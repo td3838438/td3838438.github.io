@@ -1,0 +1,170 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>涂祎豪の博客 - 记录生活与学习的点点滴滴</title><meta name="description" content="那一夜，我也曾梦见百万雄兵。"><meta name="author" content="涂祎豪"><meta name="copyright" content="涂祎豪"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/page/4/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="website"><meta property="og:title" content="涂祎豪の博客"><meta property="og:url" content="http://example.com/page/4/"><meta property="og:site_name" content="涂祎豪の博客"><meta property="og:description" content="那一夜，我也曾梦见百万雄兵。"><meta property="og:image" content="http://example.com/img/avatar.png"><meta property="article:published_time" content="2020-11-09T01:18:08.446Z"><meta property="article:modified_time" content="2020-11-09T01:18:08.446Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: false,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isSidebar: false,
+  postUpdate: '2020-11-09 09:18:08'
+}</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img {
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="涂祎豪の博客" type="application/atom+xml">
+</head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" data-lazy-src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">67</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><header class="full_page" id="page-header" style="background-color:transparent;"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">涂祎豪の博客</a></span><span class="pull-right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="site-info"><h1 id="site_title">涂祎豪の博客</h1><div id="site_subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/xxxxx" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:xxxxxx@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div id="scroll_down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout_page" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/11/09/idea%E4%B8%AD@Data%E6%A0%87%E7%AD%BEgetset%E4%B8%8D%E8%B5%B7%E4%BD%9C%E7%94%A8%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" title="无题">     <img class="post_bg" data-lazy-src="nullhttps://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/11/09/idea%E4%B8%AD@Data%E6%A0%87%E7%AD%BEgetset%E4%B8%8D%E8%B5%B7%E4%BD%9C%E7%94%A8%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" title="无题">无题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-09T01:16:29.329Z" title="发表于 2020-11-09 09:16:29">2020-11-09</time></span></div><div class="content">idea中@Data标签getset不起作用解决方法安装LomBok plunge插件
+
+</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/11/09/IDEA%E7%B1%BB%E5%92%8C%E6%96%B9%E6%B3%95%E6%B3%A8%E9%87%8A%E6%A8%A1%E6%9D%BF/" title="无题">     <img class="post_bg" data-lazy-src="nullhttps://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/11/09/IDEA%E7%B1%BB%E5%92%8C%E6%96%B9%E6%B3%95%E6%B3%A8%E9%87%8A%E6%A8%A1%E6%9D%BF/" title="无题">无题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-09T01:16:29.323Z" title="发表于 2020-11-09 09:16:29">2020-11-09</time></span></div><div class="content">IDEA类和方法注释模板
+</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/11/09/Idea%E6%8A%A5%E9%94%99%EF%BC%9AJava%20%E5%B8%B8%E9%87%8F%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%87%E9%95%BF/" title="无题">     <img class="post_bg" data-lazy-src="nullhttps://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/11/09/Idea%E6%8A%A5%E9%94%99%EF%BC%9AJava%20%E5%B8%B8%E9%87%8F%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%87%E9%95%BF/" title="无题">无题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-09T01:16:29.318Z" title="发表于 2020-11-09 09:16:29">2020-11-09</time></span></div><div class="content">Idea报错：Java 常量字符串过长1报错：Error:(77, 27) java: 常量字符串过长
+
+解决方案：
+在做一个非常长的json转对象的测试时Intellij IDEA 编译不通过，报”常量字符串太长”，做如下调整即可: 使用 Eclipse编译器 解决问题。
+IDEA的操作流程:File -&gt; Settings -&gt; Build,Execution,Deployment -&gt; Compiler -&gt; Java Compiler。
+点击 Use Compiler, 选择Eclipse, 点击确定保存即可。
+
+</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/11/09/idea%20Tomcat%E5%90%AF%E5%8A%A8%E6%97%A5%E5%BF%97%E4%B9%B1%E7%A0%81%E8%A7%A3%E5%86%B3/" title="无题">     <img class="post_bg" data-lazy-src="nullhttps://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/11/09/idea%20Tomcat%E5%90%AF%E5%8A%A8%E6%97%A5%E5%BF%97%E4%B9%B1%E7%A0%81%E8%A7%A3%E5%86%B3/" title="无题">无题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-09T01:16:29.313Z" title="发表于 2020-11-09 09:16:29">2020-11-09</time></span></div><div class="content">idea Tomcat启动日志乱码解决将Tomcat文件夹下conf —&gt; logging.properties 中所有 UTF-8 改为 GBK即可
+
+</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/11/09/HOW2J.CN%20%E5%AD%A6%E4%B9%A0/" title="无题">     <img class="post_bg" data-lazy-src="nullhttps://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/11/09/HOW2J.CN%20%E5%AD%A6%E4%B9%A0/" title="无题">无题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-09T01:16:29.308Z" title="发表于 2020-11-09 09:16:29">2020-11-09</time></span></div><div class="content">HOW2J.CN 学习
+学习 HOW2J.CN 天猫前端、天猫整站SSM和天猫整站Springboot三条学习路线
+
+
+
+
+</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/11/09/HOW2J.CN%20J2SE%20%E9%9D%A2%E8%AF%95%E9%A2%98/" title="无题">     <img class="post_bg" data-lazy-src="nullhttps://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/11/09/HOW2J.CN%20J2SE%20%E9%9D%A2%E8%AF%95%E9%A2%98/" title="无题">无题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-09T01:16:29.302Z" title="发表于 2020-11-09 09:16:29">2020-11-09</time></span></div><div class="content">HOW2J.CN J2SE 面试题1：面向对象的特征有哪些方面？12345678封装	最常见的是吧属性私有化封装在一个类里面，只能通过方法去访问继承	子类继承父类，从而继承了父类的方法和属性抽象	比如一个hero类，抽象出了name,hp这些属性，使得开发过程中更加易于理解多态	多态分操作符的多态和类的多态。 类的多态指父类引用指向子类对象，并且有继承，有重写。
+
+2：String是最基本的数据类型吗？1234567String是类类型，不是基本类型。基本类型 有八种这八种基本类型分别是：    整型 （4种）    字符型 （1种）    浮点型 （2种）    布尔型（1种）
+
+3：int 和 Integer 有什么区别？123int 是基本类型32位长度的整数Integer 是类类型，是int的封装类int和Integer之间可以通过自动装箱 自动拆箱 互相转换
+
+4：String 和 StringBuffer 的区别？12345String是immutable的,其内容一旦创建好之后，就不可以发生改变。StringBuffer 是可以变长的，内容也可以发生改变。改变的原理是St ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/11/09/git%20ssh-key/" title="无题">     <img class="post_bg" data-lazy-src="nullhttps://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/11/09/git%20ssh-key/" title="无题">无题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-09T01:16:29.296Z" title="发表于 2020-11-09 09:16:29">2020-11-09</time></span></div><div class="content">git ssh-key
+
+
+
+1234567891011121314151617181920212223242526272829303132333435363738394041424344admin@DESKTOP-VH8FK20 MINGW64 /d/AsiaInfo/opt$ cd ~/.sshadmin@DESKTOP-VH8FK20 MINGW64 ~/.ssh$ ssh-keygen -t rsa -C &quot;tuyh3@asiainfo.com&quot;Generating public/private rsa key pair.Enter file in which to save the key (/c/Users/admin/.ssh/id_rsa):Enter passphrase (empty for no passphrase):Enter same passphrase again:Your identification has been saved inYour public key has been saved in .pubThe key fin ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/11/09/Chrome%20F12%20%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7%E5%AD%A6%E4%B9%A0/" title="无题">     <img class="post_bg" data-lazy-src="nullhttps://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/11/09/Chrome%20F12%20%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7%E5%AD%A6%E4%B9%A0/" title="无题">无题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-09T01:16:29.289Z" title="发表于 2020-11-09 09:16:29">2020-11-09</time></span></div><div class="content">Chrome F12 开发者工具学习Network开发者工具初步介绍
+Chrome开发者工具最常用的四个功能模块：
+
+Elements：主要用来查看前面界面的html的Dom结构，和修改css的样式。css可以即时修改，即使显示。大大方便了开发者调试页面，这真是十分友好的~
+console：这个除了查看错误信息、打印调试信息(console.log())、写一些测试脚本以外，还可以当作Javascript API查看用。例如我想查看console都有哪些方法和属性，我可以直接在Console中输入”console”并执行~
+Sources：主要用来调试js和查看源代码
+Network：重头戏来了~
+
+Network详细介绍
+我们按照从左到右的顺序来写：
+
+记录按钮 处于打开状态时会在此面板进行网络连接的信息记录，关闭后则不会记录。
+清除按钮 清除当前的网络连接记录信息。（点击一下就能清空）
+捕获截屏 记录页面加载过程中一些时间点的页面渲染情况，截图根据可视窗口截取，如下图所示。
+
+</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/11/09/Apache%20POI%20-%20Java%20Excel%20APIs%E5%AD%A6%E4%B9%A0/" title="无题">     <img class="post_bg" data-lazy-src="nullhttps://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/11/09/Apache%20POI%20-%20Java%20Excel%20APIs%E5%AD%A6%E4%B9%A0/" title="无题">无题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-09T01:16:29.283Z" title="发表于 2020-11-09 09:16:29">2020-11-09</time></span></div><div class="content">Apache POI - Java Excel APIs学习各场提供 Java Excel 相关 APIJava Aspose CellsJava Aspose Cells 是一种纯粹的Java授权的Excel API，开发和供应商Aspose发布。这个API的最新版本是8.1.2，发布于2014年7月，是一个丰富而厚重的API(普通Java类和AWT类的组合)设计，可以读、写和操纵电子表格Excel的组件。此API常见用途如下：
+
+Excel报表，建立动态Excel报表
+高保真的Excel渲染和打印
+从Excel电子表格中导入和导出数据
+生成，编辑，转换和电子表格
+
+JXLJExcelApache POI</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/11/09/Apache%20Kafka%20%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4/" title="无题">     <img class="post_bg" data-lazy-src="nullhttps://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/11/09/Apache%20Kafka%20%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4/" title="无题">无题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-09T01:16:29.278Z" title="发表于 2020-11-09 09:16:29">2020-11-09</time></span></div><div class="content">Apache Kafka 安装步骤</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/3/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" data-lazy-src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">涂祎豪</div><div class="author-info__description">那一夜，我也曾梦见百万雄兵。</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives"><div class="headline">文章</div><div class="length_num">67</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xxxxx" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:xxxxxx@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-recent-item"><div class="aside-recent-post"><a class="aside-post-cover" href="/2020/11/09/%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C/" title="无题"><img class="aside-post-bg" data-lazy-src="nullhttps://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="aside-post-info"><a class="aside-post-title" href="/2020/11/09/%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C/" title="无题">无题</a><time class="aside-post_meta post-meta-date" datetime="2020-11-09T01:16:29.492Z" title="发表于 2020-11-09 09:16:29">2020-11-09</time></div></div><div class="aside-recent-post"><a class="aside-post-cover" href="/2020/11/09/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" title="无题"><img class="aside-post-bg" data-lazy-src="nullhttps://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="aside-post-info"><a class="aside-post-title" href="/2020/11/09/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" title="无题">无题</a><time class="aside-post_meta post-meta-date" datetime="2020-11-09T01:16:29.485Z" title="发表于 2020-11-09 09:16:29">2020-11-09</time></div></div><div class="aside-recent-post"><a class="aside-post-cover" href="/2020/11/09/%E4%BA%9A%E4%BF%A1%E5%AE%9E%E4%B9%A0%E6%97%A5%E8%AE%B0/" title="无题"><img class="aside-post-bg" data-lazy-src="nullhttps://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="aside-post-info"><a class="aside-post-title" href="/2020/11/09/%E4%BA%9A%E4%BF%A1%E5%AE%9E%E4%B9%A0%E6%97%A5%E8%AE%B0/" title="无题">无题</a><time class="aside-post_meta post-meta-date" datetime="2020-11-09T01:16:29.480Z" title="发表于 2020-11-09 09:16:29">2020-11-09</time></div></div><div class="aside-recent-post"><a class="aside-post-cover" href="/2020/11/09/%E4%BA%9A%E4%BF%A1%E7%AC%94%E8%AF%95%E8%AE%B0%E5%BD%95/" title="无题"><img class="aside-post-bg" data-lazy-src="nullhttps://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="aside-post-info"><a class="aside-post-title" href="/2020/11/09/%E4%BA%9A%E4%BF%A1%E7%AC%94%E8%AF%95%E8%AE%B0%E5%BD%95/" title="无题">无题</a><time class="aside-post_meta post-meta-date" datetime="2020-11-09T01:16:29.476Z" title="发表于 2020-11-09 09:16:29">2020-11-09</time></div></div><div class="aside-recent-post"><a class="aside-post-cover" href="/2020/11/09/%E9%A1%B9%E7%9B%AE%E6%B5%8B%E8%AF%95%E5%AD%A6%E4%B9%A0/" title="无题"><img class="aside-post-bg" data-lazy-src="nullhttps://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="aside-post-info"><a class="aside-post-title" href="/2020/11/09/%E9%A1%B9%E7%9B%AE%E6%B5%8B%E8%AF%95%E5%AD%A6%E4%B9%A0/" title="无题">无题</a><time class="aside-post_meta post-meta-date" datetime="2020-11-09T01:16:29.470Z" title="发表于 2020-11-09 09:16:29">2020-11-09</time></div></div></div></div></div><div class="card-widget card-archives"><div class="card-content"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/11/"><span class="card-archive-list-date">十一月 2020</span><span class="card-archive-list-count">67</span></a></li></ul></div></div><div class="card-widget card-webinfo"><div class="card-content"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="webinfo-article-name">文章数目 :</div><div class="webinfo-article-count">67</div></div><div class="webinfo-item">      <div class="webinfo-site-uv-name">本站访客数 :</div><div class="webinfo-site-uv-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="webinfo-site-name">本站总访问量 :</div><div class="webinfo-site-pv-count" id="busuanzi_value_site_pv"></div></div></div></div></div></div></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By 涂祎豪</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly"><span>Butterfly</span></a></div></div></footer><script>var bg_index = Math.floor(Math.random() * 55);var res = 'background-image: url("https://cdn.jsdelivr.net/gh///' + bg_index + '");';document.getElementById('web_bg').style = res</script></div><section id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><div class="js-pjax"><script>function subtitleType () {
+  if (true) { 
+    var typed = new Typed("#subtitle", {
+      strings: "今日事&#44;今日畢,Never put off till tomorrow what you can do today".split(","),
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50
+    })
+  } else {
+    document.getElementById("subtitle").innerHTML = '今日事&#44;今日畢'
+  }
+}
+
+if (true) {
+  if (typeof Typed === 'function') subtitleType()
+  else $.getScript('https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js', subtitleType)
+} else {
+  subtitleType()
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script>cdn_url = ""</script><script src="/" data-pjax></script></div></body></html>

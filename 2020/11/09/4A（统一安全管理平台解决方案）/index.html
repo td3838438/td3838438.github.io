@@ -1,0 +1,127 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>涂祎豪の博客 | 涂祎豪の博客</title><meta name="description" content="4A（统一安全管理平台解决方案） 作者：涂祎豪  简介4A是指：认证Authentication、账号Account、授权Authorization、审计Audit，中文名称为统一安全管理平台解决方案。即将身份认证、授权、审计和账号（即不可否认性及数据完整性）定义为网络安全的四大组成部分，从而确立了身份认证在整个网络安全系统中的地位与作用。 4A系统背景​    随着信息技术的不断发展和信息化建设"><meta name="author" content="涂祎豪"><meta name="copyright" content="涂祎豪"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2020/11/09/4A%EF%BC%88%E7%BB%9F%E4%B8%80%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%89/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="涂祎豪の博客"><meta property="og:url" content="http://example.com/2020/11/09/4A%EF%BC%88%E7%BB%9F%E4%B8%80%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%89/"><meta property="og:site_name" content="涂祎豪の博客"><meta property="og:description" content="4A（统一安全管理平台解决方案） 作者：涂祎豪  简介4A是指：认证Authentication、账号Account、授权Authorization、审计Audit，中文名称为统一安全管理平台解决方案。即将身份认证、授权、审计和账号（即不可否认性及数据完整性）定义为网络安全的四大组成部分，从而确立了身份认证在整个网络安全系统中的地位与作用。 4A系统背景​    随着信息技术的不断发展和信息化建设"><meta property="og:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg"><meta property="article:published_time" content="2020-11-09T01:16:29.274Z"><meta property="article:modified_time" content="2020-11-06T02:20:36.572Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: false,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2020-11-06 10:20:36'
+}</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img {
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="涂祎豪の博客" type="application/atom+xml">
+</head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" data-lazy-src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">67</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#4A%EF%BC%88%E7%BB%9F%E4%B8%80%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">4A（统一安全管理平台解决方案）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4A%E7%B3%BB%E7%BB%9F%E8%83%8C%E6%99%AF"><span class="toc-number">1.2.</span> <span class="toc-text">4A系统背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.3.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4A%E5%B9%B3%E5%8F%B0%E7%9A%84%E7%AE%A1%E7%90%86%E5%8A%9F%E8%83%BD"><span class="toc-number">1.4.</span> <span class="toc-text">4A平台的管理功能</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text"></span></a></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(nullhttps://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">涂祎豪の博客</a></span><span class="pull-right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">无题</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-11-09T01:16:29.274Z" title="发表于 2020-11-09 09:16:29">2020-11-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-11-06T02:20:36.572Z" title="更新于 2020-11-06 10:20:36">2020-11-06</time></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h2 id="4A（统一安全管理平台解决方案）"><a href="#4A（统一安全管理平台解决方案）" class="headerlink" title="4A（统一安全管理平台解决方案）"></a>4A（统一安全管理平台解决方案）</h2><blockquote>
+<p>作者：涂祎豪</p>
+</blockquote>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>4A是指：<strong>认证Authentication</strong>、<strong>账号Account</strong>、<strong>授权Authorization</strong>、<strong>审计Audit</strong>，中文名称为统一安全管理平台解决方案。即将<strong>身份认证</strong>、<strong>授权</strong>、<strong>审计</strong>和<strong>账号（即不可否认性及数据完整性）</strong>定义为网络安全的四大组成部分，从而确立了身份认证在整个网络安全系统中的地位与作用。</p>
+<h3 id="4A系统背景"><a href="#4A系统背景" class="headerlink" title="4A系统背景"></a>4A系统背景</h3><p>​    随着信息技术的不断发展和信息化建设的不断进步，业务应用、办公系统、商务平台不断推出和投入运行，信息系统在企业的运营中全面渗透。电信行业、财政、税务、公安、金融、电力、石油、大中型企业和门户网站，使用数量众多的网络设备、服务器主机来提供基础网络服务、运行关键业务，提供电子商务、数据库应用、ERP和协同工作群件等服务。由于设备和服务器众多，系统管理员压力太大等因素，越权访问、误操作、滥用、恶意破坏等情况时有发生，这严重影响企业的经济运行效能，并对企业声誉造成重大影响。另外黑客的恶意访问也有可能获取系统权限，闯入部门或企业内部网络，造成不可估量的损失。如何提高系统运维管理水平，跟踪服务器上用户的操作行为，防止黑客的入侵和破坏，提供控制和审计依据，降低运维成本，满足相关标准要求，越来越成为企业关心的问题。</p>
+<p>​    2002年由美国总统布什签发的萨班斯法案(Sarbanes-Oxley Act)开始生效。其中要求企业的经营活动，企业管理、项目和投资等，都要有控制和审计手段。因此，管理人员需要有有效的技术手段和专业的技术工具和安全产品按照行业的标准来做细粒度的管理，真正做到对于内部网络的严格管理，可以控制、限制和追踪用户的行为，判定用户的行为是否对企业内部网络的安全运行带来威胁。</p>
+<p>​    2007年，由公安部、国家保密局、国家密码管理局、国务院信息工作办公室四部门联合印发了《信息安全等级保护管理办法》，为我国信息系统等级保护工作的迅速展开起到了有力的促进作用。配合该《管理办法》的发布，一系列相关国家标准也进入紧锣密鼓的制定和审批当中。如：《信息系统安全等级保护基本要求》（以下简称《基本要求》）、《信息系统安全等级保护-定级指南》、《信息系统安全等级保护-实施指南》、《信息系统安全等级保护-测评准则》等。其中《基本要求》针对每个等级的信息系统提出相应安全保护要求，按照《基本要求》进行保护后，信息系统达到一种相对安全的状态，即具备了相应等级的信息安全保护能力。 </p>
+<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>​    <strong>4A</strong> (认证Authentication、账号Account、授权Authorization、审计Audit)统一安全管理平台解决方案。</p>
+<p>​    1995年，国际网安界最早提出4A(认证Authentication、账号Account、授权Authorization、审计Audit)统一安全管理平台解决方案概念，正式将身份认证作为整个网络安全的基础及不可或缺的组成部分，即将身份认证、授权、审计和账号（即不可否认性及数据完整性）定义为网络安全的四大组成部分，从而确立了身份认证在整个网络安全系统中的地位与作用。</p>
+<p>​    所谓4A统一安全管理平台解决方案，即融合统一用户账号管理、统一认证管理、统一授权管理和统一安全审计四要素后的解决方案将涵盖单点登录（SSO）等安全功能，既能够为客户提供功能完善的、 <a target="_blank" rel="noopener" href="http://baike.baidu.com/view/245652.htm">高安</a>全级别的4A管理，也能够为用户提供符合萨班斯法案（SOX）要求的 <a target="_blank" rel="noopener" href="http://baike.baidu.com/view/460936.htm">内控</a>报表。</p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/4A%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt="4A示意图"></p>
+<h3 id="4A平台的管理功能"><a href="#4A平台的管理功能" class="headerlink" title="4A平台的管理功能"></a>4A平台的管理功能</h3><p><img src= "/img/loading.gif" data-lazy-src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/4A%E5%8A%9F%E8%83%BD%E7%BB%93%E6%9E%84%E5%9B%BE.jpg" alt="4A功能结构图"></p>
+<ol>
+<li><p><strong>集中账号（account）管理</strong></p>
+<p> 为用户提供统一集中的帐号管理，支持管理的资源包括主流的操作系统、网络设备和应用系统；不仅能够实现被管理资源帐号的创建、删除及同步等帐号管理生命周期所包含的基本功能，而且也可以通过平台进行帐号密码策略，密码强度、生存周期的设定。</p>
+</li>
+<li><p><strong>集中认证（authentication）管理</strong></p>
+<p> 可以根据用户应用的实际需要，为用户提供不同强度的认证方式，既可以保持原有的静态口令方式，又可以提供具有双因子认证方式的高强度认证（一次性口令、数字证书、动态口令），而且还能够集成现有其它如生物特征等新型的认证方式。不仅可以实现用户认证的统一管理，并且能够为用户提供统一的认证门户，实现企业信息资源访问的单点登录。 </p>
+</li>
+<li><p><strong>集中权限（authorization）管理</strong></p>
+<p> 可以对用户的资源访问权限进行集中控制。它既可以实现对B/S、C/S应用系统资源的访问权限控制，也可以实现对数据库、主机及网络设备的操作的权限控制，资源控制类型既包括B/S的URL、C/S的功能模块，也包括数据库的数据、记录及主机、网络设备的操作命令、IP地址及端口。 </p>
+</li>
+<li><p><strong>集中审计（audit）管理</strong></p>
+<p> 将用户所有的操作日志集中记录管理和分析，不仅可以对用户行为进行监控，并且可以通过集中的审计数据进行数据挖掘，以便于事后的安全事故责任的认定。</p>
+</li>
+</ol>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2></div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">涂祎豪</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2020/11/09/4A%EF%BC%88%E7%BB%9F%E4%B8%80%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%89/">http://example.com/2020/11/09/4A%EF%BC%88%E7%BB%9F%E4%B8%80%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%89/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">涂祎豪の博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/11/09/Apache%20Kafka%20%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4/"><img class="prev-cover" data-lazy-src="nullhttps://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info"></div></div></a></div><div class="next-post pull-right"><a href="/2020/11/08/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4Java%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C%E5%AD%A6%E4%B9%A0/"><img class="next-cover" data-lazy-src="nullhttps://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">阿里巴巴Java开发手册学习</div></div></a></div></nav></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By 涂祎豪</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly"><span>Butterfly</span></a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font_plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font_minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script>cdn_url = ""</script><script src="/" data-pjax></script></div></body></html>
