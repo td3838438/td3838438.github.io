@@ -1,0 +1,265 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>涂祎豪の博客 - 记录生活与学习的点点滴滴</title><meta name="author" content="涂祎豪"><meta name="copyright" content="涂祎豪"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="那一夜，我也曾梦见百万雄兵。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="涂祎豪の博客">
+<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:site_name" content="涂祎豪の博客">
+<meta property="og:description" content="那一夜，我也曾梦见百万雄兵。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/null">
+<meta property="article:author" content="涂祎豪">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/null"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2020-11-11 11:23:19'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="涂祎豪の博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/null" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a></div></div></div><hr/></div></div><div id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">涂祎豪の博客</a></span><span id="menus"><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="site-info"><h1 id="site-title">涂祎豪の博客</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/11/09/%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C/" title="原子操作">     <img class="post_bg" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="原子操作"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/11/09/%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C/" title="原子操作">原子操作</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-09T01:16:29.492Z" title="发表于 2020-11-09 09:16:29">2020-11-09</time></span></div><div class="content">原子操作定义​    子操作（atomic operation）指的是由多步操作组成的一个操作。如果该操作不能原子地执行，则要么执行完所有步骤，要么一步也不执行，不可能只执行所有步骤的一个子集。
+解释​    现代操作系统中，一般都提供了原子操作来实现一些同步操作，所谓原子操作，也就是一个独立而不可分割的操作。在单核环境中，一般的意义下原子操作中线程不会被切换，线程切换要么在原子操作之前，要么在原子操作完成之后。更广泛的意义下原子操作是指一系列必须整体完成的操作步骤，如果任何一步操作没有完成，那么所有完成的步骤都必须回滚，这样就可以保证要么所有操作步骤都未完成，要么所有操作步骤都被完成。
+</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/11/09/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" title="异常处理">     <img class="post_bg" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="异常处理"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/11/09/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" title="异常处理">异常处理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-09T01:16:29.485Z" title="发表于 2020-11-09 09:16:29">2020-11-09</time></span></div><div class="content">异常处理
+参考：异常处理-廖雪峰的官方教程
+
+Java的异常调用方如何获知调用失败的信息？有两种方法：
+方法一：约定返回错误码。
+例如，处理一个文件，如果返回0，表示成功，返回其他整数，表示约定的错误码：
+1234567891011121314int code = processFile(&quot;C:\\test.txt&quot;);if (code == 0) &#123;    // ok:&#125; else &#123;    // error:    switch (code) &#123;    case 1:        // file not found:    case 2:        // no read permission:    default:        // unknown error:    &#125;&#125;
+
+因为使用int类型的错误码，想要处理就非常麻烦。这种方式常见于底层C函数。
+方法二：在语言层面上提供一个异常处理机制。
+Java内置了一套异常处理机制，总是使用异常来表示错误。
+异常是一种class，因此它本身带有类型信 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/11/09/%E4%BA%9A%E4%BF%A1%E7%AC%94%E8%AF%95%E8%AE%B0%E5%BD%95/" title="亚信笔试记录">     <img class="post_bg" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="亚信笔试记录"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/11/09/%E4%BA%9A%E4%BF%A1%E7%AC%94%E8%AF%95%E8%AE%B0%E5%BD%95/" title="亚信笔试记录">亚信笔试记录</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-09T01:16:29.476Z" title="发表于 2020-11-09 09:16:29">2020-11-09</time></span></div><div class="content">亚信笔试记录
+作者：涂祎豪
+
+
+JavaEE是技术平台还是框架？什么是JavaEE？
+ 1JavaEE是具有JVM和一组特定API的编写网络应用程序的平台
+
+“==”和equals方法有什么区别？
+ 1231.基本数据类型，用“&#x3D;&#x3D;”作比较，比较的是值2.复合数据类型，用“&#x3D;&#x3D;”比较的是他们在内存中存放地址用equals时，如果该数据类型没有重写equals方法，则与使用“&#x3D;&#x3D;”结果相同（比如String）
+
+接口是否可继承接口？抽象类是否可实现（implements）接口？
+ 121.可以2.可以
+
+如何把一段逗号分割的字符串转换成一个数组？
+ 1split(&quot;,&quot;);
+
+请写出你最常见到的5个runtime exception 
+ 12345678910View codeNullPointerException - 空指针引用异常ClassCastException - 类型强制转换异常。IllegalArgumentException - 传递非法参数异常。ArithmeticException -  ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/11/09/%E9%A1%B9%E7%9B%AE%E6%B5%8B%E8%AF%95%E5%AD%A6%E4%B9%A0/" title="项目测试学习">     <img class="post_bg" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="项目测试学习"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/11/09/%E9%A1%B9%E7%9B%AE%E6%B5%8B%E8%AF%95%E5%AD%A6%E4%B9%A0/" title="项目测试学习">项目测试学习</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-09T01:16:29.470Z" title="发表于 2020-11-09 09:16:29">2020-11-09</time></span></div><div class="content">项目测试学习ps -ef|grepps：将某个进程显示出来
+grep：时查找
+|：管道命令，是指ps命令与grep同时执行
+PS是LINUX下最常用的也是非常强大的进程查看命令
+grep命令时查找，是一种强大的文本搜索工具，它能使用正则表达式搜索文本，并把匹配的行打印出来。
+grep全称是Global Regular Expression Print，表示全局正则表达式版本，它的使用权限是所有用户。
+一下这条命令是检查java进程是否存在：ps -ef |grep java
+字段含义入下：
+
+
+
+UID
+PID
+PPID
+C
+STIME
+TTY
+TIME
+CMD
+
+
+
+zzw
+14124
+13991
+0
+00:38
+pts/0
+00:00:00
+grep –color=auto dae
+
+
+UID   ：程序被该 UID 所拥有
+PID   ：就是这个程序的 ID 
+PPID  ：则是其上级父程序的ID
+C     ：CPU使用的资源百分比
+STIME ：系统启动时间
+TTY   ：登入者的终端机位置
+TIME  ：使用掉的CPU时间。
+CMD  ：所下达的是什么指令
+ps -e|gr ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/11/09/%E7%9E%8E%E5%87%A0%E6%8A%8A%E8%AE%B0/" title="瞎几把记">     <img class="post_bg" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="瞎几把记"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/11/09/%E7%9E%8E%E5%87%A0%E6%8A%8A%E8%AE%B0/" title="瞎几把记">瞎几把记</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-09T01:16:29.465Z" title="发表于 2020-11-09 09:16:29">2020-11-09</time></span></div><div class="content">瞎几把记8年以上工作难度，要求难度，leetcode随机从8000个题库里抽出来中等难度2道题，必须在20分钟内输出结果，满足时间和空间复杂度最低。要求能手撕红黑树，对redis源码,netty,epoll模型等有深入研究，有大量jvm性能调优经验。精通juc编程，精通分布式事务解决方案，对mysql的mvcc底层readview源码有深入研究。对spring源码，srpingboot,springcloud源码需要有深入研究，对各种中间件源码需要有深入理解和运用；8年以上工作难度，要求难度，leetcode随机从8000个题库里抽出来中等难度2道题，必须在20分钟内输出结果，满足时间和空间复杂度最低。要求能手撕红黑树，对redis源码,netty,epoll模型等有深入研究，有大量jvm性能调优经验。精通juc编程，精通分布式事务解决方案，对mysql的mvcc底层readview源码有深入研究。对spring源码，srpingboot,springcloud源码需要有深入研究，对各种中间件源码需要有深入理解和运用；
+</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/11/09/%E6%9C%AA%E5%91%BD%E5%90%8D/" title="无题">     <img class="post_bg" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/11/09/%E6%9C%AA%E5%91%BD%E5%90%8D/" title="无题">无题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-09T01:16:29.460Z" title="发表于 2020-11-09 09:16:29">2020-11-09</time></span></div><div class="content">
+</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/11/09/%E5%A6%82%E4%BD%95%E5%9C%A8IntellIj%20IDEA%E4%B8%AD%E9%9B%86%E6%88%90Gitlab/" title="无题">     <img class="post_bg" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/11/09/%E5%A6%82%E4%BD%95%E5%9C%A8IntellIj%20IDEA%E4%B8%AD%E9%9B%86%E6%88%90Gitlab/" title="无题">无题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-09T01:16:29.455Z" title="发表于 2020-11-09 09:16:29">2020-11-09</time></span></div><div class="content">如何在IntellIj IDEA中集成Gitlab（1）在File =&gt; Setting =&gt; Plugins 中搜索gitlab
+
+（2）安装这个插件
+（3）重启IDEA，再次点击菜单栏 VCS =&gt; Checkout From Version Control ，就会发现这次已经有了gitlab选项
+
+（4）确认安装成功之后，开始配置gitlab
+
+第一栏填写gitlab服务器地址,如https://gitlab.com/ (如果是私服,请换成私服地址)
+第二栏填写repositories地址(若服务器地址填写正确,此处可不填)
+第三栏填写第三步中的Private token
+第四栏可选择SSH方式和HTTP方式,一般选择HTTP方式  填写完成后点击ok,就会出现以下页面
+
+
+</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/11/09/%E8%BF%9B%E7%A8%8B%E7%BB%84%E4%BC%98%E5%8C%96%E9%9C%80%E6%B1%82%E5%8E%9F%E5%9E%8B/" title="进程组优化需求原型（浙江亚信）">     <img class="post_bg" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="进程组优化需求原型（浙江亚信）"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/11/09/%E8%BF%9B%E7%A8%8B%E7%BB%84%E4%BC%98%E5%8C%96%E9%9C%80%E6%B1%82%E5%8E%9F%E5%9E%8B/" title="进程组优化需求原型（浙江亚信）">进程组优化需求原型（浙江亚信）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-09T01:16:29.447Z" title="发表于 2020-11-09 09:16:29">2020-11-09</time></span></div><div class="content">进程组优化需求原型（浙江亚信）关注
+
+12345678910111213141516/**	TopteaLogger类中缺少方法：	getLogger	info		ModuleObjectAucListManagerImpl类中缺少方法	setType	setRemark	setModule	setId	setName	setCreateBy	setProId	setCreateTime 	 */</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/11/09/%E8%A7%A3%E6%9E%90xml%E6%96%87%E4%BB%B6%E7%9A%84%E5%87%A0%E7%A7%8D%E6%8A%80%E6%9C%AF/" title="解析xml文件的几种技术">     <img class="post_bg" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="解析xml文件的几种技术"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/11/09/%E8%A7%A3%E6%9E%90xml%E6%96%87%E4%BB%B6%E7%9A%84%E5%87%A0%E7%A7%8D%E6%8A%80%E6%9C%AF/" title="解析xml文件的几种技术">解析xml文件的几种技术</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-09T01:16:29.442Z" title="发表于 2020-11-09 09:16:29">2020-11-09</time></span></div><div class="content">解析xml文件的几种技术1、解析xml的几种技术1. dom4j​    dom4j是一个Java的XML API，类似于jdom，用来读写XML文件的。dom4j是一个非常优秀的Java XML API，具有性能优异、功能强大和极端易用使用的特点，同时它也是一个开放源代码的软件。
+2. sax​    SAX（simple API for XML）是一种XML解析的替代方法。相比于DOM，SAX是一种速度更快，更有效的方法。它逐行扫描文档，一边扫描一边解析。而且相比于DOM，SAX可以在解析文档的任意时刻停止解析，但任何事物都有其相反的一面，对于SAX来说就是操作复杂。
+3. jaxb​    JAXB（Java Architecture forXML Binding) 是一个业界的标准，是一项可以根据XML Schema产生Java类的技术。该过程中，JAXB也提供了将XML实例文档反向生成Java对象树的方法，并能将Java对象树的内容重新写到XML实例文档。从另一方面来讲，JAXB提供了快速而简便的方法将XML模式绑定到Java表示，从而使得Java开发者在Java应用程序中能 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/11/09/zookeeper%E5%AD%A6%E4%B9%A0/" title="zookeeper 学习">     <img class="post_bg" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="zookeeper 学习"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/11/09/zookeeper%E5%AD%A6%E4%B9%A0/" title="zookeeper 学习">zookeeper 学习</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-09T01:16:29.427Z" title="发表于 2020-11-09 09:16:29">2020-11-09</time></span></div><div class="content">zookeeper 学习
+作者：涂祎豪
+
+简介简介：Zookeeper是Apacahe Hadoop的子项目，是一个树型的目录服务，支持变更推送，适合作为Dubbo服务的注册中心，工业强度较高，可用于生产环境，并推荐使用。
+
+可以作为集群的管理工具使用。
+可以集中管理配置文件。
+
+注册中心负责服务地址的注册与查找，相当于目录服务，服务提供者和消费者只在启动时与注册中心交互，注册中心不转发请求，压力较小。
+基本概念Zookeeper中的角色主要有以下三类，如下表所示：
+
+下载官网下载：zookeeper
+百度云下载：apache-zookeeper-3.6.2     提取码：2333
+Linux中安装
+将下载文件上传到Linux中（使用XFTP或者SecurityCRT）
+
+解压
+ 1    
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">涂祎豪</div><div class="author-info__description">那一夜，我也曾梦见百万雄兵。</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2020/11/09/%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C/" title="原子操作"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="原子操作"/></a><div class="content"><a class="title" href="/2020/11/09/%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C/" title="原子操作">原子操作</a><time datetime="2020-11-09T01:16:29.492Z" title="发表于 2020-11-09 09:16:29">2020-11-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/11/09/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" title="异常处理"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="异常处理"/></a><div class="content"><a class="title" href="/2020/11/09/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" title="异常处理">异常处理</a><time datetime="2020-11-09T01:16:29.485Z" title="发表于 2020-11-09 09:16:29">2020-11-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/11/09/%E4%BA%9A%E4%BF%A1%E7%AC%94%E8%AF%95%E8%AE%B0%E5%BD%95/" title="亚信笔试记录"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="亚信笔试记录"/></a><div class="content"><a class="title" href="/2020/11/09/%E4%BA%9A%E4%BF%A1%E7%AC%94%E8%AF%95%E8%AE%B0%E5%BD%95/" title="亚信笔试记录">亚信笔试记录</a><time datetime="2020-11-09T01:16:29.476Z" title="发表于 2020-11-09 09:16:29">2020-11-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/11/09/%E9%A1%B9%E7%9B%AE%E6%B5%8B%E8%AF%95%E5%AD%A6%E4%B9%A0/" title="项目测试学习"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="项目测试学习"/></a><div class="content"><a class="title" href="/2020/11/09/%E9%A1%B9%E7%9B%AE%E6%B5%8B%E8%AF%95%E5%AD%A6%E4%B9%A0/" title="项目测试学习">项目测试学习</a><time datetime="2020-11-09T01:16:29.470Z" title="发表于 2020-11-09 09:16:29">2020-11-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/11/09/%E7%9E%8E%E5%87%A0%E6%8A%8A%E8%AE%B0/" title="瞎几把记"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="瞎几把记"/></a><div class="content"><a class="title" href="/2020/11/09/%E7%9E%8E%E5%87%A0%E6%8A%8A%E8%AE%B0/" title="瞎几把记">瞎几把记</a><time datetime="2020-11-09T01:16:29.465Z" title="发表于 2020-11-09 09:16:29">2020-11-09</time></div></div></div></div></div><div class="card-widget card-archives"><div class="card-content"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/11/"><span class="card-archive-list-date">十一月 2020</span><span class="card-archive-list-count">60</span></a></li></ul></div></div><div class="card-widget card-webinfo"><div class="card-content"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">60</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2020-11-11T03:23:18.794Z"></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 By 涂祎豪</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>
