@@ -1,0 +1,668 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ElasticSearch 学习 | 涂祎豪の博客</title><meta name="keywords" content="ElasticSearch"><meta name="author" content="涂祎豪"><meta name="copyright" content="涂祎豪"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="ElasticSearch 学习[TOC] ElasticSearch 入门ElasticSearch 安装ElasticSearch 中文社区         https:&#x2F;&#x2F;github.com&#x2F;mobz&#x2F;elasticsearch-head           ElasticSearch 概述ElasticSearch（简称 es）是一个实时分布式开源全文搜索和分析引擎。它可以从 RESTf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ElasticSearch 学习">
+<meta property="og:url" content="http://example.com/2021/01/18/ElasticSearch-%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="涂祎豪の博客">
+<meta property="og:description" content="ElasticSearch 学习[TOC] ElasticSearch 入门ElasticSearch 安装ElasticSearch 中文社区         https:&#x2F;&#x2F;github.com&#x2F;mobz&#x2F;elasticsearch-head           ElasticSearch 概述ElasticSearch（简称 es）是一个实时分布式开源全文搜索和分析引擎。它可以从 RESTf">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2021-01-18T06:47:46.000Z">
+<meta property="article:modified_time" content="2021-01-18T06:48:35.510Z">
+<meta property="article:author" content="涂祎豪">
+<meta property="article:tag" content="ElasticSearch">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/01/18/ElasticSearch-%E5%AD%A6%E4%B9%A0/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?bfc0a84a9f263f4ea22d102c28b67a28";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":1,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: true
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-01-18 14:48:35'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><meta name="generator" content="Hexo 5.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首頁</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 時間軸</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 標籤</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分類</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清單</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音樂</span></a></li><li><a class="site-page" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 電影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友鏈</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 關於</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">涂祎豪の博客</a></span><span id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首頁</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 時間軸</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 標籤</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分類</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清單</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音樂</span></a></li><li><a class="site-page" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 電影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友鏈</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 關於</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><h1 class="post-title">ElasticSearch 学习</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-01-18T06:47:46.000Z" title="发表于 2021-01-18 14:47:46">2021-01-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-01-18T06:48:35.510Z" title="更新于 2021-01-18 14:48:35">2021-01-18</time></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="ElasticSearch-学习"><a href="#ElasticSearch-学习" class="headerlink" title="ElasticSearch 学习"></a>ElasticSearch 学习</h1><p>[TOC]</p>
+<h2 id="ElasticSearch-入门"><a href="#ElasticSearch-入门" class="headerlink" title="ElasticSearch 入门"></a>ElasticSearch 入门</h2><h3 id="ElasticSearch-安装"><a href="#ElasticSearch-安装" class="headerlink" title="ElasticSearch 安装"></a>ElasticSearch 安装</h3><p><a target="_blank" rel="noopener" href="https://elasticsearch.cn/">ElasticSearch 中文社区</a></p>
+<img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20201212141303733.png" alt="image-20201212141303733" style="zoom: 33%;" />
+
+<img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20201212142011494.png" alt="image-20201212142011494" style="zoom:33%;" />
+
+<img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20201212141757169.png" alt="image-20201212141757169" style="zoom:33%;" />
+
+<img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20201212142313681.png" alt="image-20201212142313681" style="zoom: 33%;" />
+
+<p><a target="_blank" rel="noopener" href="https://github.com/mobz/elasticsearch-head">https://github.com/mobz/elasticsearch-head</a></p>
+<img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20201212150150611.png" alt="image-20201212150150611" style="zoom: 33%;" />
+
+<img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20201212152817350.png" alt="image-20201212152817350" style="zoom: 33%;" />
+
+<img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20201212153111777.png" alt="image-20201212153111777" style="zoom: 25%;" />
+
+<img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20201212153343028.png" alt="image-20201212153343028" style="zoom: 33%;" />
+
+
+
+<h3 id="ElasticSearch-概述"><a href="#ElasticSearch-概述" class="headerlink" title="ElasticSearch 概述"></a>ElasticSearch 概述</h3><p>ElasticSearch（简称 es）是一个实时分布式开源全文搜索和分析引擎。它可以从 RESTful 网络服务接口访问，并使用无模式 JSON ( JavaScript 对象符号) 文档来存储数据。它建立在 Java 编程语言之上，使 ElasticSearch 能够在不同的平台上运行。它使用户能够以非常高的速度浏览非常大量的数据。</p>
+<h3 id="ElasticSearch-的特点"><a href="#ElasticSearch-的特点" class="headerlink" title="ElasticSearch 的特点"></a>ElasticSearch 的特点</h3><ul>
+<li>ElasticSearch 最多可扩展到千兆字节的结构化和非结构化数据；</li>
+<li>ElasticSearch 可以用来替代像 MongoDB 和 RavenDB 这样的文档存储；</li>
+<li>ElasticSearch 使用<strong>反规范化</strong>来提高搜索性能；</li>
+</ul>
+<h3 id="ElasticSearch-的优势"><a href="#ElasticSearch-的优势" class="headerlink" title="ElasticSearch 的优势"></a>ElasticSearch 的优势</h3><ul>
+<li> ElasticSearch 是在Java上开发的，这使得它在几乎每个平台上都是兼容的。</li>
+<li> ElasticSearch 是实时的，换句话说，一秒钟后添加的文档可以在这个引擎中搜索。</li>
+<li> ElasticSearch 是分布式的，这使得它易于在任何大组织中扩展和集成。</li>
+<li> 通过使用 ElasticSearch 中的网关概念，创建完整备份很容易。</li>
+<li> 与 Apache Solr 相比，在 ElasticSearch 中处理多用户非常容易。</li>
+<li> ElasticSearch 使用JSON对象作为响应，这使得用大量不同的编程语言调用 ElasticSearch 服务器成为可能。</li>
+<li> ElasticSearch支持几乎所有文档类型，除了那些不支持文本呈现的。</li>
+</ul>
+<h3 id="ElasticSearch-的缺点"><a href="#ElasticSearch-的缺点" class="headerlink" title="ElasticSearch 的缺点"></a>ElasticSearch 的缺点</h3><ul>
+<li>ElasticSearch 在处理请求和响应数据方面没有提供多语言支持 （仅在 JSON 中可能），这与 Apache Solr 不同， Apache Solr 中可能有 CSV、XML 和 JSON 格式。</li>
+<li>ElasticSearch也有分裂的问题，但在极少数情况下。</li>
+</ul>
+<h3 id="ElasticSearch-的关键概念"><a href="#ElasticSearch-的关键概念" class="headerlink" title="ElasticSearch 的关键概念"></a>ElasticSearch 的关键概念</h3><ul>
+<li>Node（节点）：它指的是 ElasticSearch 的<strong>单个运行实例</strong>。单个物理和虚拟服务器可容纳多个节点，具体取决于其物理资源（如内存、存储和处理能力）的能力。</li>
+<li>Cluster（集群）：它是一个或多个节点组成的集合。集群为整个数据提供跨节点的索引和搜索功能。</li>
+<li>Index（索引）：包含一堆有相似结构的文档数据，比如可以有一个客户索引，商品分类索引、订单索引，索引有一个名称。一个 index 包含很多 document，一个 index 就代表了一类类似的或者相同的 Document。比如说简历一个商品索引，里面可能就存放了所有的商品数据。</li>
+<li>Type / Mapping（类型 / 映射）：它是共享同一索引中一组公共字段的文档集合。例如，索引包含社交网络应用程序的数据，然后可以有特定类型的用户简档数据、另一种类型的消息数据和另一种类型的评论数据。</li>
+<li>Document（文档）：它是以 JSON 格式定义的特定方式的字段集合。每个文档都属于一个类型，并驻留在一个索引中。每个文档都有一个唯一的标识符，称为 UID。</li>
+<li>Shard（分片）：单台机器无法存储大量数据，ElasticSearch 可以将一个索引中的数据切分为多个 Shard，分布在多台服务器上存储。有了 Shard 就可以横向扩展，存储更多数据，让搜索和分析等操作分布到多台服务器上去执行，提升吞吐量和性能。</li>
+<li>Replicas（副本）：服务器随时可能故障或宕机，此时Shard可能就会丢失，因此可以为每个 Shard 创建多个 Replica 副本。Replica可以在 Shard 故障时提供备用服务，保证数据不丢失，多个 Replica 还可以提升搜索操作的吞吐量和性能。</li>
+</ul>
+<h3 id="面向文档（ElasticSearch）和关系型数据库的区别"><a href="#面向文档（ElasticSearch）和关系型数据库的区别" class="headerlink" title="面向文档（ElasticSearch）和关系型数据库的区别"></a>面向文档（ElasticSearch）和关系型数据库的区别</h3><p><img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20201212154402530.png" alt="image-20201212154402530"></p>
+<p><code>ElasticSearch</code>（集群）中可以包含多个 <code>索引</code>（数据库），每个索引中可以包含多个 <code>类型</code>（表），每个类型下又包含多个 <code>文档</code>（行），每个文档中又包含多个 <code>字段</code>（列）。</p>
+<p><strong>物理设计：</strong></p>
+<p>ElasticSearch 在后台吧每个<strong>索引划分成多个分片</strong>，每个分片可以在集群中不同的服务器间迁移。</p>
+<p><strong>逻辑设计：</strong></p>
+<p>一个索引类型中，包含多个文档，比如说文档1，文档2。当我们索引一篇文章时，可以通过这样的顺序找到它：索引 &gt; 类型 &gt; 文档 ID，通过这个组合我们就能缩影到某个具体的文档（注意：ID 是字符串，因此不必是整数）。</p>
+<h2 id="ElasticSearch-核心概念"><a href="#ElasticSearch-核心概念" class="headerlink" title="ElasticSearch 核心概念"></a>ElasticSearch 核心概念</h2><p>当我们开始使用 Elasticsearch 时，我们必须理解其中的一些重要的概念。这些概念的理解对于以后我们使用 Elastic 栈是非常重要的。在今天的这篇文章里，我们先来介绍一下在 Elastic 栈中最重要的一些概念。</p>
+<p>首先，我们来看下一下如下的这个图：</p>
+<img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/20190813160721443.png" alt="img" style="zoom: 67%;" />
+
+
+
+<h3 id="集群-Cluster"><a href="#集群-Cluster" class="headerlink" title="集群 Cluster"></a>集群 Cluster</h3><p>Elasticsearch 集群由一个或多个节点组成，可通过其集群名称进行标识。通常这个 Cluster 的名字是可以在 Elasticsearch 里的配置文件中设置的。在默认的情况下，如我们的 Elasticsearch 已经开始运行，那么它会自动生成一个叫做 “elasticsearch” 的集群。我们可以在 config/elasticsearch.yml 里定制我们的集群的名字：</p>
+<img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20201228165754888.png" alt="image-20201228165754888" style="zoom: 33%;" />
+
+<p>一个 Elasticsearch 的集群就像是下面的一个布局：</p>
+<img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/20191002210223688.png" alt="Elasticsearch 集群布局" style="zoom:50%;" />
+
+<p>带有 NGINX 代理及 Balancer 的架构图如下：</p>
+<img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/202001021931034.png" alt="202001021931034" style="zoom: 67%;" />
+
+
+
+<p>我们可以通过：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">GET _cluster/state</span><br></pre></td></tr></table></figure>
+
+<p>来获取整个 cluster 的状态。这个状态只能被 master node 所改变。上面的接口返回的结果是：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;cluster_name&quot;: &quot;elasticsearch&quot;,</span><br><span class="line">  &quot;compressed_size_in_bytes&quot;: 1920,</span><br><span class="line">  &quot;version&quot;: 10,</span><br><span class="line">  &quot;state_uuid&quot;: &quot;rPiUZXbURICvkPl8GxQXUA&quot;,</span><br><span class="line">  &quot;master_node&quot;: &quot;O4cNlHDuTyWdDhq7vhJE7g&quot;,</span><br><span class="line">  &quot;blocks&quot;: &#123;&#125;,</span><br><span class="line">  &quot;nodes&quot;: &#123;...&#125;,</span><br><span class="line">  &quot;metadata&quot;: &#123;...&#125;,</span><br><span class="line">  &quot;routing_table&quot;: &#123;...&#125;,</span><br><span class="line">  &quot;routing_nodes&quot;: &#123;...&#125;,</span><br><span class="line">  &quot;snapshots&quot;: &#123;...&#125;,</span><br><span class="line">  &quot;restore&quot;: &#123;...&#125;,</span><br><span class="line">  &quot;snapshot_deletions&quot;: &#123;...&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="节点-Node"><a href="#节点-Node" class="headerlink" title="节点 Node"></a>节点 Node</h3><p>单个 Elasticsearch 实例。 在大多数环境中，每个节点都在单独的盒子或虚拟机上运行。一个集群由一个或多个 node 组成。在测试的环境中，我可以把多个 node 运行在一个 server 上。在实际的部署中，大多数情况还是需要一个 server 上运行一个 node。</p>
+<p>根据 node 的作用，可以分为如下的几种：</p>
+<ul>
+<li>master-eligible：可以作为主 node。一旦成为主 node，它可以管理整个 cluster 的设置及变化：创建，更新，删除 index；添加或删除 node；为 node 分配 shard；</li>
+<li>data：数据 node；</li>
+<li>ingest: 数据接入（比如 <a target="_blank" rel="noopener" href="https://www.elastic.co/guide/en/elasticsearch/reference/7.4/ingest.html">pipepline</a>)；</li>
+<li>machine learning (<a target="_blank" rel="noopener" href="https://www.elastic.co/cn/subscriptions">Gold/Platinum License</a>)</li>
+</ul>
+<p>一般来说，一个 node 可以具有上面的一种或几种功能。我们可以在命令行或者 Elasticsearch 的配置文件（Elasticsearch.yml）来定义：</p>
+<table>
+<thead>
+<tr>
+<th>Node 类型</th>
+<th>配置参数</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>master-eligible</td>
+<td>node.master</td>
+<td>true</td>
+</tr>
+<tr>
+<td>data</td>
+<td>node.data</td>
+<td>true</td>
+</tr>
+<tr>
+<td>ingest</td>
+<td>node.ingest</td>
+<td>true</td>
+</tr>
+<tr>
+<td>machine.learning</td>
+<td>node.ml</td>
+<td>true（除了 OSS 发布版）</td>
+</tr>
+</tbody></table>
+<p>你也可以让一个 node 做专有的功能及角色。如果上面 node 配置参数没有任何配置，那么我们可以认为这个 node 是作为一个Coordination node。在这种情况下，它可以接受外部的请求，并转发到相应的节点来处理。针对 master node，有时我们需要设置 cluster.remote.connect: false。</p>
+<p>在实际的使用中，我们可以把请求发送给 data 节点，而不能发送给 master 节点。</p>
+<p>我们可以通过对 config/elasticsearch.yml 文件中配置来定义一个 node 在集群中的角色：</p>
+<img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/20200418073955815.png" alt="20200418073955815" style="zoom: 67%;" />
+
+
+
+<p>在有些情况中，我们可以通过设置 node.voting_only 为 true 从而使得一个 node 在 node.master 为真的情况下，只作为参加 voting 的功能，而不当选为 master node。这种情况为了避免脑裂情况发生。它通常可以使用一个 CPU 性能较低的 node 来担当。</p>
+<p>在一个集群中，我们可以使用如下的一个命令来获取当前可以进行 vote 的所有 master-eligible 节点：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">GET /_cluster/state?filter_path=metadata.cluster_coordination.last_committed_config</span><br></pre></td></tr></table></figure>
+
+<p>你可能获得类似如下列表的结果：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;metadata&quot; : &#123;</span><br><span class="line">    &quot;cluster_coordination&quot; : &#123;</span><br><span class="line">      &quot;last_committed_config&quot; : [</span><br><span class="line">        &quot;Xe6KFUYCTA6AWRpbw84qaQ&quot;,</span><br><span class="line">        &quot;OvD79L1lQme1hi06Ouiu7Q&quot;,</span><br><span class="line">        &quot;e6KF9L1lQUYbw84CTAemQl&quot;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/20191216165538697.png" alt="img" style="zoom:50%;" />
+
+<p>上面的定义适用于 Elastic Stack 7.9 发布版以前。在 Elastic Stack 7.9 之后，有了新的改进。请详细阅读文章 “<a target="_blank" rel="noopener" href="https://elasticstack.blog.csdn.net/article/details/110947372">Elasticsearch：Node 介绍 - 7.9 之后版本</a>”。</p>
+<h3 id="文档-Document"><a href="#文档-Document" class="headerlink" title="文档 Document"></a>文档 Document</h3><p>Elasticsearch 是面向文档的，这意味着您索引或搜索的最小数据单元是文档。文档在 Elasticsearch 中有一些重要的属性：</p>
+<ul>
+<li>它是独立的。文档包含字段（名称）及其值。</li>
+<li>可以分层。可以将其视为文档中的文档。字段的值可以很简单，就像位置字段的值可以使字符串一样。它还可以包含其他字段和值。例如，位置字段可能包含城市和街道地址。</li>
+<li>结构灵活。您的文档不依赖于预定义的架构。例如，并非所有事件都需要描述值，因此可以完全省略该字段。但它可能需要新的字段，例如位置的纬度和经度。</li>
+</ul>
+<p>文档通常是数据的 <a target="_blank" rel="noopener" href="https://baike.baidu.com/item/JSON/2462549?fr=aladdin">JSON</a> 表示形式。JSON over HTTP 是与 Elasticsearch 进行通信的最广泛使用的方式，它是我们在本书中使用的方法。例如，您的聚会网站中的事件可以在以下文档中表示：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">&quot;name&quot;</span>: <span class="string">&quot;Elasticsearch Denver&quot;</span>,</span><br><span class="line">	<span class="attr">&quot;organizer&quot;</span>: <span class="string">&quot;Lee&quot;</span>,</span><br><span class="line">	<span class="attr">&quot;location&quot;</span>: <span class="string">&quot;Denver, Colorado, USA&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>很多人认为 document 相比较于关系数据库，它相应于其中每个 record。</p>
+<img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/20200418074457143.png" alt="20200418074457143" style="zoom:80%;" />
+
+<h3 id="类型-type"><a href="#类型-type" class="headerlink" title="类型 type"></a>类型 type</h3><p>类型是文档的逻辑容器，类似于表是行的容器。 您将具有不同结构（模式）的文档放在不同类型中。 例如，你可以使用一种类型来定义聚合组，并在人们聚集时为事件定义另一种类型。</p>
+<p>每种类型的字段定义称为映射。 例如，name 将映射为字符串。我们说文档是我模式的，它们不需要拥有映射中所定义的所有字段。比如新增一个字段，那么 ElasticSearch 会自动将新字段加入映射，但是由于不确定这个字段的类型，ElasticSearch 会开始猜，如果这个字段的值为 18，那么 ElasticSearch 会认为它是整形。但是由于 ElasticSearch 的这个机制不一定能准确判断出字段的类型，我们还是最好提前定义好需要的映射（就像关系型数据库先定义好字段，然后再使用）。</p>
+<h3 id="索引-index"><a href="#索引-index" class="headerlink" title="索引 index"></a>索引 index</h3><p>在 Elasticsearch 中，索引是文档的集合。</p>
+<p><img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/20190813164839888.png" alt="20190813164839888"></p>
+<p>每个 Index 一个或许多的 documents 组成，并且这些 document 可以分布于不同的 shard 之中。</p>
+<p><img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/20190923220747401.png" alt="img"></p>
+<p>很多人认为 index 类似于关系数据库中的 database。这中说法是有些道理，但是并不完全相同。其中很重要的一个原因是，在Elasticsearch 中的文档可以有 <a target="_blank" rel="noopener" href="https://www.elastic.co/guide/en/elasticsearch/reference/current/object.html">object</a> 及 <a target="_blank" rel="noopener" href="https://www.elastic.co/guide/en/elasticsearch/reference/current/nested.html">nested</a> 结构。一个 index 是一个逻辑命名空间，它映射到一个或多个主分片，并且可以具有零个或多个副本分片。</p>
+<p>每当一个文档进来后，根据文档的 id 会自动进行 hash 计算，并存放于计算出来的 shard 实例中，这样的结果可以使得所有的 shard 都比较有均衡的存储，而不至于有的 shard 很忙。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">shard_num = hash(_routing) % num_primary_shards</span><br></pre></td></tr></table></figure>
+
+<p>在默认的情况下，上面的 _routing 既是文档的 _id。如果有 <a target="_blank" rel="noopener" href="https://www.elastic.co/guide/en/elasticsearch/reference/7.3/mapping-routing-field.html">routing</a> 的参与，那么这些文档可能只存放于一个特定的 shard，这样的好处是对于一些情况，我们可以很快地综合我们所需要的结果而不需要跨 node 去得到请求。比如针对 <a target="_blank" rel="noopener" href="https://elasticstack.blog.csdn.net/article/details/100162379">join</a> 的数据类型。</p>
+<p>从上面的公式我们也可以看出来，我们的 shard 数目是不可以动态修改的，否则之后也找不到相应的 shard 号码了。必须指出的是，<strong>replica 的数目是可以动态修改的</strong>。</p>
+<h4 id="注：倒排索引理解"><a href="#注：倒排索引理解" class="headerlink" title="注：倒排索引理解"></a>注：倒排索引理解</h4><p>Elasticsearch 使用的是一种称为倒排索引的结构，采用 Lucene 倒排索作为底层。这种结构适用于快速的全文搜索， 一个索引由文档中所有不重复的列表构成，对于每一个词，都有一个包含它的文档列表。 例如，现在有两个文档， 每个文档包含如下内容：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Study every day, good good up to forever # 文档1包含的内容</span><br><span class="line">To forever, study every day, good good up # 文档2包含的内容</span><br></pre></td></tr></table></figure>
+
+<p>为了创建倒排索引，我们首先要将每个文档拆分成独立的词(或称为词条或者tokens)，然后创建一个包含所有不重 复的词条的排序列表，然后列出每个词条出现在哪个文档 :</p>
+<table>
+<thead>
+<tr>
+<th>term</th>
+<th>doc_1</th>
+<th>doc_2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Study</td>
+<td>√</td>
+<td>×</td>
+</tr>
+<tr>
+<td>To</td>
+<td>×</td>
+<td>×</td>
+</tr>
+<tr>
+<td>every</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>forever</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>day</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>study</td>
+<td>×</td>
+<td>√</td>
+</tr>
+<tr>
+<td>good</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>every</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>to</td>
+<td>√</td>
+<td>×</td>
+</tr>
+<tr>
+<td>up</td>
+<td>√</td>
+<td>√</td>
+</tr>
+</tbody></table>
+<p>现在，我们试图搜索 to forever，只需要查看包含每个词条的文档</p>
+<table>
+<thead>
+<tr>
+<th>term</th>
+<th>doc_1</th>
+<th>doc_2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>to</td>
+<td>√</td>
+<td>×</td>
+</tr>
+<tr>
+<td>forever</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>total</td>
+<td>2</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<p>两个文档都匹配，但是第一个文档比第二个匹配程度更高。如果没有别的条件，现在，这两个包含关键字的文档都将返回。</p>
+<p>再来看一个示例，比如我们通过博客标签来搜索博客文章。那么倒排索引列表就是这样的一个结构 :</p>
+<p><img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20201228193123583.png" alt="image-20201228193123583"></p>
+<p>如果要搜索含有 python 标签的文章，那相对于查找所有原始数据而言，查找倒排索引后的数据将会快的多。只需要 查看标签这一栏，然后获取相关的文章ID即可。</p>
+<h3 id="分片-shard"><a href="#分片-shard" class="headerlink" title="分片 shard"></a>分片 shard</h3><p>由于 Elasticsearch 是一个分布式搜索引擎，因此索引通常会拆分为分布在多个节点上的称为分片的元素。 Elasticsearch 自动管理这些分片的排列。 它还根据需要重新平衡分片，因此用户无需担心细节。</p>
+<p>一个索引可以存储超出单个结点硬件限制的大量数据。比如，一个具有10亿文档的索引占据1TB的磁盘空间，而任一节点都没有这样大的磁盘空间；或者单个节点处理搜索请求，响应太慢。</p>
+<p>为了解决这个问题，Elasticsearch 提供了将索引划分成多份的能力，这些份就叫做分片（shard）。当你创建一个索引的时候，你可以指定你想要的分片(shard)的数量。每个分片本身也是一个功能完善并且独立的“索引”，这个“索引”可以被放置到集群中的任何节点上。<br>分片之所以重要，主要有两方面的原因：</p>
+<ul>
+<li>允许你水平分割/扩展你的内容容量</li>
+<li>允许你在分片（潜在地，位于多个节点上）之上进行分布式的、并行的操作，进而提高性能/吞吐量</li>
+</ul>
+<p>有两种类型的分片：primary shard 和r eplica shard。</p>
+<ul>
+<li><p>Primary shard: 每个文档都存储在一个Primary shard。 索引文档时，它首先在 Primary shard上编制索引，然后在此分片的所有副本上（replica）编制索引。索引可以包含一个或多个主分片。 此数字确定索引相对于索引数据大小的可伸缩性。 创建索引后，无法更改索引中的主分片数。</p>
+</li>
+<li><p>Replica shard: 每个主分片可以具有零个或多个副本。 副本是主分片的副本，有两个目的：</p>
+<p>  增加故障转移：如果主要故障，可以将副本分片提升为主分片</p>
+<p>  提高性能：get 和 search 请求可以由主 shard 或副本 shard 处理。</p>
+<p>  默认情况下，每个主分片都有一个副本，但可以在现有索引上动态更改副本数。 永远不会在与其主分片相同的节点上启动副本分片。</p>
+</li>
+</ul>
+<p>下面的图表示的是一个 index 有5个 shard 及1个 replica</p>
+<img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/20190814211710327.png" alt="img" style="zoom:67%;" />
+
+<p>这些 shard 分布于不同的物理机器上：</p>
+<img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/20200624114427449.png" alt="img" style="zoom:50%;" />
+
+<p>我们可以为每个 index 设置相应的 shard 数值：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">curl -XPUT http://localhost:9200/another_user?pretty -H &#x27;Content-Type: application/json&#x27; -d &#x27;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;settings&quot;</span> : &#123;</span><br><span class="line">        <span class="attr">&quot;index.number_of_shards&quot;</span> : <span class="number">2</span>,</span><br><span class="line">        <span class="attr">&quot;index.number_of_replicas&quot;</span> : <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>比如在上面的 REST 接口中，我们为 another_user 这个 index 设置了2个 shards，并且有一个 replica。一旦设置好shard的数量，我们就不可以修改了。这是因为Elasticsearch会已经这个数量，会依据每个document的id及shard的数量来把相应的document分配到相应的shard中。如果这个数量以后修改的话，那么每次搜索的时候，可能会找不到相应的shard。</p>
+<p>我们可以通过如下的接口来查看我们的index中的设置：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">curl -XGET http://localhost:9200/twitter/_settings?pretty </span><br></pre></td></tr></table></figure>
+
+<p>上面我们可以得到 twitter index 的设置信息：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;twitter&quot;</span> : &#123;</span><br><span class="line">    <span class="attr">&quot;settings&quot;</span> : &#123;</span><br><span class="line">      <span class="attr">&quot;index&quot;</span> : &#123;</span><br><span class="line">        <span class="attr">&quot;creation_date&quot;</span> : <span class="string">&quot;1565618906830&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;number_of_shards&quot;</span> : <span class="string">&quot;1&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;number_of_replicas&quot;</span> : <span class="string">&quot;1&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;uuid&quot;</span> : <span class="string">&quot;rwgT8ppWR3aiXKsMHaSx-w&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;version&quot;</span> : &#123;</span><br><span class="line">          <span class="attr">&quot;created&quot;</span> : <span class="string">&quot;7030099&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;provided_name&quot;</span> : <span class="string">&quot;twitter&quot;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="副本-replica"><a href="#副本-replica" class="headerlink" title="副本 replica"></a>副本 replica</h3><p>默认情况下，Elasticsearch 为每个索引创建一个主分片和一个副本。这意味着每个索引将包含一个主分片，每个分片将具有一个副本。</p>
+<p>分配多个分片和副本是分布式搜索功能设计的本质，提供高可用性和快速访问索引中的文档。主副本和副本分片之间的主要区别在于只有主分片可以接受索引请求。副本和主分片都可以提供查询请求。</p>
+<p>在上图中，我们有一个Elasticsearch集群，由默认分片配置中的两个节点组成。 Elasticsearch 自动排列分割在两个节点上的一个主分片。有一个副本分片对应于每个主分片，但这些副本分片的排列与主分片的排列完全不同。</p>
+<p>请允许我们澄清一下：请记住，number_of_shards 值与索引有关，而不是与整个群集有关。此值指定每个索引的分片数（不是群集中的主分片总数）。</p>
+<p>我们可以通过如下的接口来获得一个index的健康情况：</p>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="attribute">http://localhost:9200/_cat/indices/twitter</span></span><br></pre></td></tr></table></figure>
+
+<p>上面的接口可以返回如下的信息：</p>
+<p><img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/20190813214034299.png" alt="img"></p>
+<p> 更进一步的查询，我们可以看出：</p>
+<p><img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/20190817115843924.png" alt="img"></p>
+<p>如果一个i ndex 显示的是红色，表面这个 index 至少有一个 primary shard 没有被正确分配，并且有的 shard 及其相应的 replica 已经不能正常访问。 如果是绿色，表明 index 的每一个 shard 都有备份 （replica），并且其备份也成功复制在相应的 replica shard 之中。如果其中的一个 node 坏了，相应的另外一个 node 的 replica 将起作用，从而不会造成数据的丢失。</p>
+<p>shard 健康</p>
+<ul>
+<li><font color="red">红色</font>：集群中未分配至少一个主分片</li>
+<li><font color="Goldenrod">黄色</font>：已分配所有主副本，但未分配至少一个副本</li>
+<li><font color="green">绿色</font>：分配所有分片</li>
+</ul>
+<h2 id="Elasticsearch-基础操作"><a href="#Elasticsearch-基础操作" class="headerlink" title="Elasticsearch 基础操作"></a>Elasticsearch 基础操作</h2><h3 id="IK-分词器"><a href="#IK-分词器" class="headerlink" title="IK 分词器"></a>IK 分词器</h3><blockquote>
+<p>IK 分词器介绍</p>
+</blockquote>
+<p>​    在elasticsearch 中查询数据，使用了默认的分词器，分词效果不太理想。会把字段分成一个一个汉字，搜索时会把搜索到的句子进行分词，非常不智能，所以本次引入更为智能的IK分词器。</p>
+<p>​    IK分词器提供两种分词算法 ik_smart和ik_max_word，ik_smar为最少切分，ik_max_word最精细度切分。</p>
+<blockquote>
+<p>安装步骤 </p>
+</blockquote>
+<p>1、下载地址</p>
+<p>根据es版本选择对应的IK版本，本次使用的7.10.0 IK分析器版本。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">https:&#x2F;&#x2F;github.com&#x2F;medcl&#x2F;elasticsearch-analysis-ik&#x2F;releases</span><br></pre></td></tr></table></figure>
+
+<img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20210104155944945.png" alt="image-20210104155944945" style="zoom:67%;" />
+
+<p>2、下载后解压，并将目录拷贝到 es 根目录下的 plugins 目录中。</p>
+<img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20210104160242966.png" alt="image-20210104160242966" style="zoom: 50%;" />
+
+<p>3、重新启动 es 服务，在启动过程中，你可以看到正在加载 “analysis-ik” 插件的提示信息，服务启动后，在命令行运行 <code>elasticsearch-plugin list</code> 命令，确认 ik 插件安装成功。</p>
+<img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20210104160750301.png" alt="image-20210104160750301" style="zoom:50%;" />
+
+<img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20210104160804757.png" alt="image-20210104160804757" style="zoom: 50%;" />
+
+<p>4、在 kibanna 中测试 ik 分词器，并就相关分词结果和 icu 分词器进行对比。</p>
+<h3 id="Rest-风格说明"><a href="#Rest-风格说明" class="headerlink" title="Rest 风格说明"></a>Rest 风格说明</h3><p>一种软件架构风格，而不是标准，只是提供了一组设计原则和约束条件。它主要用于客户端和服务器交互类的软件。基于这个风格设计的软件可以更简洁，更有层次，更易于实现缓存等机制。</p>
+<p>基本Rest命令说明：</p>
+<table>
+<thead>
+<tr>
+<th align="center">method</th>
+<th align="center">url 地址</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">PUT</td>
+<td align="center">localhost:9200/索引名称/类型名称/文档 id</td>
+<td align="center">创建文档（指定文档 id）</td>
+</tr>
+<tr>
+<td align="center">POST</td>
+<td align="center">localhost:9200/索引名称/类型名称</td>
+<td align="center">创建文档（随机文档 id）</td>
+</tr>
+<tr>
+<td align="center">POST</td>
+<td align="center">localhost:9200/索引名称/类型名称/文档 id/_update</td>
+<td align="center">修改文档</td>
+</tr>
+<tr>
+<td align="center">DELETE</td>
+<td align="center">localhost:9200/索引名称/类型名称/文档 id</td>
+<td align="center">删除文档</td>
+</tr>
+<tr>
+<td align="center">GET</td>
+<td align="center">localhost:9200/索引名称/类型名称/文档 id</td>
+<td align="center">查询文档通过文档 id</td>
+</tr>
+<tr>
+<td align="center">POST</td>
+<td align="center">localhost:9200/索引名称/类型名称/_search</td>
+<td align="center">查询所有数据</td>
+</tr>
+</tbody></table>
+<h3 id="增删改查命令"><a href="#增删改查命令" class="headerlink" title="增删改查命令"></a>增删改查命令</h3><h2 id="ElasticSearch-集成-Java-实例"><a href="#ElasticSearch-集成-Java-实例" class="headerlink" title="ElasticSearch 集成 Java 实例"></a>ElasticSearch 集成 Java 实例</h2><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>创建项目，在 maven 配置中新增自己 ElasticSearch 对应的版本</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- elasticsearch 版本改为 7.10.0 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.elasticsearch<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>elasticsearch<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>7.10.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.elasticsearch.client<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>elasticsearch-rest-high-level-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>7.10.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>新建 User 类：</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p><strong>初始化：</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ElasticSearchClientConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> RestHighLevelClient <span class="title">restHighLevelClient</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        RestHighLevelClient client = <span class="keyword">new</span> RestHighLevelClient(</span><br><span class="line">                RestClient.builder(</span><br><span class="line">                        <span class="keyword">new</span> HttpHost(<span class="string">&quot;127.0.0.1&quot;</span>, <span class="number">9200</span>, <span class="string">&quot;http&quot;</span>)));</span><br><span class="line">        <span class="keyword">return</span> client;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ElasticSearchClientConfig es = <span class="keyword">new</span> ElasticSearchClientConfig();</span><br><span class="line">        System.out.println(es.restHighLevelClient());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>关闭客户端：</strong></p>
+<p>​    RestHighLevelClient将根据提供的构建器在内部创建用于执行请求的客户端。该客户端维护一个连接池并启动一些线程，因此当您处理好请求时，您应该将其关闭以释放这些资源，改操作通过调用close()方法来完成:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">client.close();</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 测试索引的创建  Request</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">testCreateIndex</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    <span class="comment">// 1. 创建索引请求</span></span><br><span class="line">    CreateIndexRequest request = <span class="keyword">new</span> CreateIndexRequest(<span class="string">&quot;malloc_index&quot;</span>);</span><br><span class="line">    <span class="comment">// 2. 客户端执行请求，请求后获得响应</span></span><br><span class="line">    CreateIndexResponse createIndexResponse = client.indices().create(request, RequestOptions.DEFAULT);</span><br><span class="line">    System.out.println(createIndexResponse);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="测试获取索引（只能判断存不存在）"><a href="#测试获取索引（只能判断存不存在）" class="headerlink" title="测试获取索引（只能判断存不存在）"></a>测试获取索引（只能判断存不存在）</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 测试获取索引，只能判断存不存在</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">testExistIndex</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    GetIndexRequest request = <span class="keyword">new</span> GetIndexRequest(<span class="string">&quot;malloc_index&quot;</span>);</span><br><span class="line">    <span class="keyword">boolean</span> exists = client.indices().exists(request, RequestOptions.DEFAULT);</span><br><span class="line">    System.out.println(exists);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 测试删除索引</span></span><br><span class="line"><span class="comment">* <span class="doctag">@throws</span> IOException</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">testDeleteIndex</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    DeleteIndexRequest request = <span class="keyword">new</span> DeleteIndexRequest(<span class="string">&quot;elasticsearch_learning_index&quot;</span>);</span><br><span class="line">    AcknowledgedResponse delete = restHighLevelClient.indices().delete(request, RequestOptions.DEFAULT);</span><br><span class="line">    System.out.println(delete.isAcknowledged());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="添加文档"><a href="#添加文档" class="headerlink" title="添加文档"></a>添加文档</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 测试添加文档</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="meta">@Test</span></span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">testAddDocument</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">       <span class="comment">// 创建对象</span></span><br><span class="line">       User user = <span class="keyword">new</span> User(<span class="string">&quot;malloc&quot;</span>, <span class="number">18</span>);</span><br><span class="line">       <span class="comment">// 创建请求</span></span><br><span class="line">       IndexRequest request = <span class="keyword">new</span> IndexRequest(<span class="string">&quot;malloc_index&quot;</span>);</span><br><span class="line"></span><br><span class="line">       <span class="comment">// 规则 put /malloc_index/_doc/1</span></span><br><span class="line">       request.id(<span class="string">&quot;1&quot;</span>);</span><br><span class="line">       request.timeout(TimeValue.timeValueSeconds(<span class="number">1</span>));</span><br><span class="line">       request.timeout(<span class="string">&quot;1s&quot;</span>);</span><br><span class="line"></span><br><span class="line">       <span class="comment">// 将我们的数据放入请求 json</span></span><br><span class="line">       IndexRequest source = request.source(JSON.toJSONString(user), XContentType.JSON);</span><br><span class="line"></span><br><span class="line">       <span class="comment">// 客户端发送请求，获取响应的结果</span></span><br><span class="line">       IndexResponse index = client.index(request, RequestOptions.DEFAULT);</span><br><span class="line"></span><br><span class="line">       System.out.println(index.toString());</span><br><span class="line">       System.out.println(index.status());</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="判断文档是否存在"><a href="#判断文档是否存在" class="headerlink" title="判断文档是否存在"></a>判断文档是否存在</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 获取文档，判断是否存在</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@throws</span> IOException</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="meta">@Test</span></span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">testIsExists</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">       GetRequest getRequest = <span class="keyword">new</span> GetRequest(<span class="string">&quot;elasticsearch_learning_index&quot;</span>, <span class="string">&quot;1&quot;</span>);</span><br><span class="line">       getRequest.fetchSourceContext(<span class="keyword">new</span> FetchSourceContext(<span class="keyword">false</span>));</span><br><span class="line">       getRequest.storedFields(<span class="string">&quot;_none_&quot;</span>);</span><br><span class="line"></span><br><span class="line">       <span class="keyword">boolean</span> exists = restHighLevelClient.exists(getRequest, RequestOptions.DEFAULT);</span><br><span class="line">       System.out.println(exists);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="获取文档信息"><a href="#获取文档信息" class="headerlink" title="获取文档信息"></a>获取文档信息</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 获取文档的信息</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="meta">@Test</span></span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">testIsGetDocument</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">       GetRequest getRequest = <span class="keyword">new</span> GetRequest(<span class="string">&quot;malloc_index&quot;</span>, <span class="string">&quot;1&quot;</span>);</span><br><span class="line">       GetResponse getResponse = client.get(getRequest, RequestOptions.DEFAULT);</span><br><span class="line">       System.out.println(getResponse.getSourceAsString()); <span class="comment">// 打印文档的内容</span></span><br><span class="line">       System.out.println(getResponse);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="更新文档信息"><a href="#更新文档信息" class="headerlink" title="更新文档信息"></a>更新文档信息</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 更新文档信息</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@throws</span> ParseException</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="meta">@Test</span></span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">testUpdateRequest</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">       UpdateRequest updateRequest = <span class="keyword">new</span> UpdateRequest(<span class="string">&quot;elasticsearch_learning_index&quot;</span>, <span class="string">&quot;1&quot;</span>);</span><br><span class="line">       updateRequest.timeout(<span class="string">&quot;1s&quot;</span>);</span><br><span class="line"></span><br><span class="line">       SimpleDateFormat dateformat = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy-MM-dd&quot;</span>);</span><br><span class="line">       Date date = dateformat.parse(<span class="string">&quot;2020-12-20&quot;</span>);</span><br><span class="line">       Timestamp registeredTime = <span class="keyword">new</span> Timestamp(date.getTime());</span><br><span class="line">       <span class="comment">// 创建对象</span></span><br><span class="line">       User user = <span class="keyword">new</span> User(<span class="string">&quot;Zhang San&quot;</span>, <span class="string">&quot;法外狂徒&quot;</span>, <span class="string">&quot;malloc2914&quot;</span>, registeredTime , <span class="number">20</span>);</span><br><span class="line"></span><br><span class="line">       updateRequest.doc(JSON.toJSONString(user), XContentType.JSON);</span><br><span class="line"></span><br><span class="line">       UpdateResponse updateResponse = restHighLevelClient.update(updateRequest, RequestOptions.DEFAULT);</span><br><span class="line">       System.out.println(updateResponse.status());</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除文档信息"><a href="#删除文档信息" class="headerlink" title="删除文档信息"></a>删除文档信息</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 删除文档信息</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@throws</span> IOException</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="meta">@Test</span></span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">testDeleteRequest</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">       DeleteRequest request = <span class="keyword">new</span> DeleteRequest(<span class="string">&quot;elasticsearch_learning_index&quot;</span>, <span class="string">&quot;1&quot;</span>);</span><br><span class="line">       request.timeout(<span class="string">&quot;1s&quot;</span>);</span><br><span class="line"></span><br><span class="line">       DeleteResponse deleteResponse = restHighLevelClient.delete(request, RequestOptions.DEFAULT);</span><br><span class="line">       System.out.println(deleteResponse.status());</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="批量导入数据"><a href="#批量导入数据" class="headerlink" title="批量导入数据"></a>批量导入数据</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 批量导入数据</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@throws</span> ParseException</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@throws</span> IOException</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="meta">@Test</span></span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">testBulkRequest</span><span class="params">()</span> <span class="keyword">throws</span> ParseException, IOException </span>&#123;</span><br><span class="line">       BulkRequest bulkRequest = <span class="keyword">new</span> BulkRequest();</span><br><span class="line">       bulkRequest.timeout(<span class="string">&quot;10s&quot;</span>);</span><br><span class="line"></span><br><span class="line">       ArrayList&lt;User&gt; userList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">       SimpleDateFormat dateformat = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy-MM-dd&quot;</span>);</span><br><span class="line">       Date date = dateformat.parse(<span class="string">&quot;2020-11-11&quot;</span>);</span><br><span class="line">       Timestamp registeredTime = <span class="keyword">new</span> Timestamp(date.getTime());</span><br><span class="line"></span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; <span class="number">20</span>; i++) &#123;</span><br><span class="line">           <span class="comment">// 创建对象</span></span><br><span class="line">           userList.add(<span class="keyword">new</span> User(<span class="string">&quot;Wang biangbiang&quot;</span> + i, <span class="string">&quot;王biangbiang&quot;</span>, <span class="string">&quot;malloc2914&quot;</span> + i, registeredTime , <span class="number">19</span>));</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="comment">// 批处理请求</span></span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; userList.size(); i++) &#123;</span><br><span class="line">           bulkRequest.add(<span class="keyword">new</span> IndexRequest(<span class="string">&quot;elasticsearch_learning_index&quot;</span>)</span><br><span class="line">           .id(<span class="string">&quot;&quot;</span> + i + <span class="number">2</span>)</span><br><span class="line">           .source(JSON.toJSONString(userList.get(i)), XContentType.JSON));</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       BulkResponse bulkItemResponses = restHighLevelClient.bulk(bulkRequest, RequestOptions.DEFAULT);</span><br><span class="line">       System.out.println(bulkItemResponses.hasFailures());</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="查询数据"><a href="#查询数据" class="headerlink" title="查询数据"></a>查询数据</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 查询</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@throws</span> IOException</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="meta">@Test</span></span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">testSearch</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">       SearchRequest searchRequest = <span class="keyword">new</span> SearchRequest(<span class="string">&quot;elasticsearch_learning_index&quot;</span>);</span><br><span class="line">       <span class="comment">// 构建搜索的条件</span></span><br><span class="line">       SearchSourceBuilder sourceBuilder = <span class="keyword">new</span> SearchSourceBuilder();</span><br><span class="line"></span><br><span class="line">       TermQueryBuilder termQueryBuilder = QueryBuilders.termQuery(<span class="string">&quot;age&quot;</span>, <span class="number">19</span>);</span><br><span class="line">       sourceBuilder.query(termQueryBuilder);</span><br><span class="line">       sourceBuilder.timeout(<span class="keyword">new</span> TimeValue(<span class="number">20</span>, TimeUnit.SECONDS));</span><br><span class="line"></span><br><span class="line">       searchRequest.source(sourceBuilder);</span><br><span class="line"></span><br><span class="line">       SearchResponse searchResponse = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);</span><br><span class="line">       System.out.println(JSON.toJSONString(searchResponse.getHits()));</span><br><span class="line">       System.out.println(<span class="string">&quot;=====================================&quot;</span>);</span><br><span class="line">       <span class="keyword">for</span> (SearchHit hit : searchResponse.getHits()) &#123;</span><br><span class="line">           System.out.println(hit.getSourceAsMap());</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;	</span><br></pre></td></tr></table></figure>
+
+<h3 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">EsJavaApiApplicationTests</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RestHighLevelClient restHighLevelClient;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 测试索引创建  Request</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> IOException</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">testCreateIndex</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 1. 创建索引请求</span></span><br><span class="line">        CreateIndexRequest request = <span class="keyword">new</span> CreateIndexRequest(<span class="string">&quot;elasticsearch_learning_index&quot;</span>);</span><br><span class="line">        <span class="comment">// 2. 客户端执行请求，请求后获得响应</span></span><br><span class="line">        CreateIndexResponse createIndexResponse = restHighLevelClient.indices().create(request, RequestOptions.DEFAULT);</span><br><span class="line">        System.out.println(createIndexResponse);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 测试获取索引，只能判断存不存在</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> IOException</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">testExistIndex</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        GetIndexRequest request = <span class="keyword">new</span> GetIndexRequest(<span class="string">&quot;elasticsearch_learning_index&quot;</span>);</span><br><span class="line">        <span class="keyword">boolean</span> exists = restHighLevelClient.indices().exists(request, RequestOptions.DEFAULT);</span><br><span class="line">        System.out.println(exists);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 测试删除索引</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> IOException</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">testDeleteIndex</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        DeleteIndexRequest request = <span class="keyword">new</span> DeleteIndexRequest(<span class="string">&quot;elasticsearch_learning_index&quot;</span>);</span><br><span class="line">        AcknowledgedResponse delete = restHighLevelClient.indices().delete(request, RequestOptions.DEFAULT);</span><br><span class="line">        System.out.println(delete.isAcknowledged());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 测试添加文档</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">testAddDocument</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        SimpleDateFormat dateformat = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy-MM-dd&quot;</span>);</span><br><span class="line">        Date date = dateformat.parse(<span class="string">&quot;2020-12-20&quot;</span>);</span><br><span class="line">        Timestamp registeredTime = <span class="keyword">new</span> Timestamp(date.getTime());</span><br><span class="line">        <span class="comment">// 创建对象</span></span><br><span class="line"><span class="comment">//        User user = new User(&quot;Zhang San&quot;, &quot;法外狂徒&quot;, &quot;111111&quot;, registeredTime , 20);</span></span><br><span class="line">        User user1 = <span class="keyword">new</span> User(<span class="string">&quot;Wang Wu&quot;</span>, <span class="string">&quot;王二麻子&quot;</span>, <span class="string">&quot;34343434&quot;</span>, registeredTime, <span class="number">21</span>);</span><br><span class="line">        <span class="comment">// 创建请求</span></span><br><span class="line">        IndexRequest request = <span class="keyword">new</span> IndexRequest(<span class="string">&quot;elasticsearch_learning_index&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 规则 put /elasticsearch_learning_index/_doc/1</span></span><br><span class="line">        request.timeout(<span class="string">&quot;1s&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 将我们的数据放入请求 json</span></span><br><span class="line"><span class="comment">//        IndexRequest source = request.source(JSON.toJSONString(user), XContentType.JSON);</span></span><br><span class="line">        IndexRequest source = request.source(JSON.toJSONString(user1), XContentType.JSON);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 客户端发送请求，获取响应结果</span></span><br><span class="line">        IndexResponse index = restHighLevelClient.index(request, RequestOptions.DEFAULT);</span><br><span class="line"></span><br><span class="line">        System.out.println(index.toString());</span><br><span class="line">        System.out.println(index.status());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取文档，判断是否存在</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> IOException</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">testIsExists</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        GetRequest getRequest = <span class="keyword">new</span> GetRequest(<span class="string">&quot;elasticsearch_learning_index&quot;</span>, <span class="string">&quot;1&quot;</span>);</span><br><span class="line">        getRequest.fetchSourceContext(<span class="keyword">new</span> FetchSourceContext(<span class="keyword">false</span>));</span><br><span class="line">        getRequest.storedFields(<span class="string">&quot;_none_&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">boolean</span> exists = restHighLevelClient.exists(getRequest, RequestOptions.DEFAULT);</span><br><span class="line">        System.out.println(exists);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取文档信息</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> IOException</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">testIsGetDocument</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        GetRequest getRequest = <span class="keyword">new</span> GetRequest(<span class="string">&quot;elasticsearch_learning_index&quot;</span>, <span class="string">&quot;1&quot;</span>);</span><br><span class="line">        GetResponse getResponse = restHighLevelClient.get(getRequest, RequestOptions.DEFAULT);</span><br><span class="line">        System.out.println(getResponse.getSourceAsString());</span><br><span class="line">        System.out.println(getResponse);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 更新文档信息</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> ParseException</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">testUpdateRequest</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        UpdateRequest updateRequest = <span class="keyword">new</span> UpdateRequest(<span class="string">&quot;elasticsearch_learning_index&quot;</span>, <span class="string">&quot;1&quot;</span>);</span><br><span class="line">        updateRequest.timeout(<span class="string">&quot;1s&quot;</span>);</span><br><span class="line"></span><br><span class="line">        SimpleDateFormat dateformat = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy-MM-dd&quot;</span>);</span><br><span class="line">        Date date = dateformat.parse(<span class="string">&quot;2020-12-20&quot;</span>);</span><br><span class="line">        Timestamp registeredTime = <span class="keyword">new</span> Timestamp(date.getTime());</span><br><span class="line">        <span class="comment">// 创建对象</span></span><br><span class="line">        User user = <span class="keyword">new</span> User(<span class="string">&quot;Zhang San&quot;</span>, <span class="string">&quot;法外狂徒&quot;</span>, <span class="string">&quot;malloc2914&quot;</span>, registeredTime , <span class="number">20</span>);</span><br><span class="line"></span><br><span class="line">        updateRequest.doc(JSON.toJSONString(user), XContentType.JSON);</span><br><span class="line"></span><br><span class="line">        UpdateResponse updateResponse = restHighLevelClient.update(updateRequest, RequestOptions.DEFAULT);</span><br><span class="line">        System.out.println(updateResponse.status());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 删除文档信息</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> IOException</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">testDeleteRequest</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        DeleteRequest request = <span class="keyword">new</span> DeleteRequest(<span class="string">&quot;elasticsearch_learning_index&quot;</span>, <span class="string">&quot;1&quot;</span>);</span><br><span class="line">        request.timeout(<span class="string">&quot;1s&quot;</span>);</span><br><span class="line"></span><br><span class="line">        DeleteResponse deleteResponse = restHighLevelClient.delete(request, RequestOptions.DEFAULT);</span><br><span class="line">        System.out.println(deleteResponse.status());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 批量导入数据</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> ParseException</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> IOException</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">testBulkRequest</span><span class="params">()</span> <span class="keyword">throws</span> ParseException, IOException </span>&#123;</span><br><span class="line">        BulkRequest bulkRequest = <span class="keyword">new</span> BulkRequest();</span><br><span class="line">        bulkRequest.timeout(<span class="string">&quot;10s&quot;</span>);</span><br><span class="line"></span><br><span class="line">        ArrayList&lt;User&gt; userList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        SimpleDateFormat dateformat = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy-MM-dd&quot;</span>);</span><br><span class="line">        Date date = dateformat.parse(<span class="string">&quot;2020-11-11&quot;</span>);</span><br><span class="line">        Timestamp registeredTime = <span class="keyword">new</span> Timestamp(date.getTime());</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; <span class="number">20</span>; i++) &#123;</span><br><span class="line">            <span class="comment">// 创建对象</span></span><br><span class="line">            userList.add(<span class="keyword">new</span> User(<span class="string">&quot;Wang biangbiang&quot;</span> + i, <span class="string">&quot;王biangbiang&quot;</span>, <span class="string">&quot;malloc2914&quot;</span> + i, registeredTime , <span class="number">19</span>));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 批处理请求</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; userList.size(); i++) &#123;</span><br><span class="line">            bulkRequest.add(<span class="keyword">new</span> IndexRequest(<span class="string">&quot;elasticsearch_learning_index&quot;</span>)</span><br><span class="line">            .id(<span class="string">&quot;&quot;</span> + i + <span class="number">2</span>)</span><br><span class="line">            .source(JSON.toJSONString(userList.get(i)), XContentType.JSON));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        BulkResponse bulkItemResponses = restHighLevelClient.bulk(bulkRequest, RequestOptions.DEFAULT);</span><br><span class="line">        System.out.println(bulkItemResponses.hasFailures());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 查询</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> IOException</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">testSearch</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        SearchRequest searchRequest = <span class="keyword">new</span> SearchRequest(<span class="string">&quot;elasticsearch_learning_index&quot;</span>);</span><br><span class="line">        <span class="comment">// 构建搜索的条件</span></span><br><span class="line">        SearchSourceBuilder sourceBuilder = <span class="keyword">new</span> SearchSourceBuilder();</span><br><span class="line"></span><br><span class="line">        TermQueryBuilder termQueryBuilder = QueryBuilders.termQuery(<span class="string">&quot;age&quot;</span>, <span class="number">19</span>);</span><br><span class="line">        sourceBuilder.query(termQueryBuilder);</span><br><span class="line">        sourceBuilder.timeout(<span class="keyword">new</span> TimeValue(<span class="number">20</span>, TimeUnit.SECONDS));</span><br><span class="line"></span><br><span class="line">        searchRequest.source(sourceBuilder);</span><br><span class="line"></span><br><span class="line">        SearchResponse searchResponse = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);</span><br><span class="line">        System.out.println(JSON.toJSONString(searchResponse.getHits()));</span><br><span class="line">        System.out.println(<span class="string">&quot;=====================================&quot;</span>);</span><br><span class="line">        <span class="keyword">for</span> (SearchHit hit : searchResponse.getHits()) &#123;</span><br><span class="line">            System.out.println(hit.getSourceAsMap());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 id="IK-分词器-1"><a href="#IK-分词器-1" class="headerlink" title="IK 分词器"></a>IK 分词器</h2><p>如果要使用中文，建议使用IK分词器</p>
+<p><img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20201212161723226.png" alt="image-20201212161723226"></p>
+<p><img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20201212162118116.png" alt="image-20201212162118116"></p>
+<p>最少切分</p>
+<img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20201212163730701.png" alt="image-20201212163730701" style="zoom:50%;" />
+
+<p>最细力度划分</p>
+<img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20201212164035520.png" alt="image-20201212164035520" style="zoom:50%;" />
+
+<blockquote>
+<p>ik 分词器增加自己的配置</p>
+</blockquote>
+<p>配置自己的 dic</p>
+<blockquote>
+<p>基础测试</p>
+</blockquote>
+<p>1、创建一个索引</p>
+<p><img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20201212165728611.png" alt="image-20201212165728611"></p>
+<img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20201212165835662.png" alt="image-20201212165835662" style="zoom: 50%;" />
+
+<img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20201212170019166.png" alt="image-20201212170019166" style="zoom:50%;" />
+
+<p>创建规则</p>
+<p><img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20201212171325713.png" alt="image-20201212171325713"></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;_index&quot; : &quot;test3&quot;,</span><br><span class="line">  &quot;_type&quot; : &quot;_doc&quot;,</span><br><span class="line">  &quot;_id&quot; : &quot;1&quot;,</span><br><span class="line">  &quot;_version&quot; : 2,</span><br><span class="line">  &quot;result&quot; : &quot;updated&quot;,</span><br><span class="line">  &quot;_shards&quot; : &#123;</span><br><span class="line">    &quot;total&quot; : 2,</span><br><span class="line">    &quot;successful&quot; : 1,</span><br><span class="line">    &quot;failed&quot; : 0</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;_seq_no&quot; : 1,</span><br><span class="line">  &quot;_primary_term&quot; : 1</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20201212173633212.png" alt="image-20201212173633212"></p>
+<p><img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20201213120022733.png" alt="image-20201213120022733"></p>
+<p><img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20201213120930210.png" alt="image-20201213120930210"></p>
+<p><img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20201213121426298.png" alt="image-20201213121426298"></p>
+<p><img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20201213121533294.png" alt="image-20201213121533294"></p>
+<p><img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20201213121950661.png" alt="image-20201213121950661"></p>
+<p><img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20201213122018177.png" alt="image-20201213122018177"></p>
+<img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20201213122604980.png" alt="image-20201213122604980" style="zoom:33%;" />
+
+<img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20201213123359875.png" alt="image-20201213123359875" style="zoom: 50%;" />
+
+
+
+<img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20201213131300721.png" alt="image-20201213131300721" style="zoom:50%;" />
+
+<img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20201213133307123.png" alt="image-20201213133307123" style="zoom: 33%;" />
+
+<img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20201213133911127.png" alt="image-20201213133911127" style="zoom: 33%;" />
+
+<p><img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20201213135930530.png" alt="image-20201213135930530"></p>
+<p><img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20201213145105010.png" alt="image-20201213145105010"></p>
+<p><img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20201213150817277.png" alt="image-20201213150817277"></p>
+<p><img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20201213151309516.png" alt="image-20201213151309516"></p>
+<p>注意：狂神聚合查询没讲</p>
+<p><img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20201213153355704.png" alt="image-20201213153355704"></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/UbuntuTouch/article/details/99443042">CSDN | Elasticsearch中的一些重要概念:cluster, node, index, document, shards及replica</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.kaifaxueyuan.com/server/elasticsearch7/elasticsearch-index.html">开发学院 | ElasticSearch 7 教程</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">涂祎豪</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/01/18/ElasticSearch-%E5%AD%A6%E4%B9%A0/">http://example.com/2021/01/18/ElasticSearch-%E5%AD%A6%E4%B9%A0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">涂祎豪の博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/ElasticSearch/">ElasticSearch</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/01/18/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"><img class="prev-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">hexo博客搭建</div></div></a></div><div class="next-post pull-right"><a href="/2021/01/18/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%B9%B3%E5%8F%B0%E5%92%8C%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0%E7%9A%84%E5%8C%BA%E5%88%AB/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">微信公众平台和开放平台的区别</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">涂祎豪</div><div class="author-info__description">那一夜，我也曾梦见百万雄兵。</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/td3838438" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:tuyihao_java@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://www.zhihu.com/people/tu-yi-hao-3" target="_blank" title="Zhihu"><i class="fab fa-zhihu"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ElasticSearch-%E5%AD%A6%E4%B9%A0"><span class="toc-number">1.</span> <span class="toc-text">ElasticSearch 学习</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ElasticSearch-%E5%85%A5%E9%97%A8"><span class="toc-number">1.1.</span> <span class="toc-text">ElasticSearch 入门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ElasticSearch-%E5%AE%89%E8%A3%85"><span class="toc-number">1.1.1.</span> <span class="toc-text">ElasticSearch 安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ElasticSearch-%E6%A6%82%E8%BF%B0"><span class="toc-number">1.1.2.</span> <span class="toc-text">ElasticSearch 概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ElasticSearch-%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-number">1.1.3.</span> <span class="toc-text">ElasticSearch 的特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ElasticSearch-%E7%9A%84%E4%BC%98%E5%8A%BF"><span class="toc-number">1.1.4.</span> <span class="toc-text">ElasticSearch 的优势</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ElasticSearch-%E7%9A%84%E7%BC%BA%E7%82%B9"><span class="toc-number">1.1.5.</span> <span class="toc-text">ElasticSearch 的缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ElasticSearch-%E7%9A%84%E5%85%B3%E9%94%AE%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.6.</span> <span class="toc-text">ElasticSearch 的关键概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E6%96%87%E6%A1%A3%EF%BC%88ElasticSearch%EF%BC%89%E5%92%8C%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.1.7.</span> <span class="toc-text">面向文档（ElasticSearch）和关系型数据库的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ElasticSearch-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="toc-number">1.2.</span> <span class="toc-text">ElasticSearch 核心概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%86%E7%BE%A4-Cluster"><span class="toc-number">1.2.1.</span> <span class="toc-text">集群 Cluster</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8A%82%E7%82%B9-Node"><span class="toc-number">1.2.2.</span> <span class="toc-text">节点 Node</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%A1%A3-Document"><span class="toc-number">1.2.3.</span> <span class="toc-text">文档 Document</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B-type"><span class="toc-number">1.2.4.</span> <span class="toc-text">类型 type</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95-index"><span class="toc-number">1.2.5.</span> <span class="toc-text">索引 index</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%EF%BC%9A%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95%E7%90%86%E8%A7%A3"><span class="toc-number">1.2.5.1.</span> <span class="toc-text">注：倒排索引理解</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%89%87-shard"><span class="toc-number">1.2.6.</span> <span class="toc-text">分片 shard</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%AF%E6%9C%AC-replica"><span class="toc-number">1.2.7.</span> <span class="toc-text">副本 replica</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Elasticsearch-%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C"><span class="toc-number">1.3.</span> <span class="toc-text">Elasticsearch 基础操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#IK-%E5%88%86%E8%AF%8D%E5%99%A8"><span class="toc-number">1.3.1.</span> <span class="toc-text">IK 分词器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Rest-%E9%A3%8E%E6%A0%BC%E8%AF%B4%E6%98%8E"><span class="toc-number">1.3.2.</span> <span class="toc-text">Rest 风格说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5%E5%91%BD%E4%BB%A4"><span class="toc-number">1.3.3.</span> <span class="toc-text">增删改查命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ElasticSearch-%E9%9B%86%E6%88%90-Java-%E5%AE%9E%E4%BE%8B"><span class="toc-number">1.4.</span> <span class="toc-text">ElasticSearch 集成 Java 实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.4.1.</span> <span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">1.4.2.</span> <span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95"><span class="toc-number">1.4.3.</span> <span class="toc-text">创建索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E8%8E%B7%E5%8F%96%E7%B4%A2%E5%BC%95%EF%BC%88%E5%8F%AA%E8%83%BD%E5%88%A4%E6%96%AD%E5%AD%98%E4%B8%8D%E5%AD%98%E5%9C%A8%EF%BC%89"><span class="toc-number">1.4.4.</span> <span class="toc-text">测试获取索引（只能判断存不存在）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E7%B4%A2%E5%BC%95"><span class="toc-number">1.4.5.</span> <span class="toc-text">删除索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E6%96%87%E6%A1%A3"><span class="toc-number">1.4.6.</span> <span class="toc-text">添加文档</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E6%96%87%E6%A1%A3%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8"><span class="toc-number">1.4.7.</span> <span class="toc-text">判断文档是否存在</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%96%87%E6%A1%A3%E4%BF%A1%E6%81%AF"><span class="toc-number">1.4.8.</span> <span class="toc-text">获取文档信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0%E6%96%87%E6%A1%A3%E4%BF%A1%E6%81%AF"><span class="toc-number">1.4.9.</span> <span class="toc-text">更新文档信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%96%87%E6%A1%A3%E4%BF%A1%E6%81%AF"><span class="toc-number">1.4.10.</span> <span class="toc-text">删除文档信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%B9%E9%87%8F%E5%AF%BC%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="toc-number">1.4.11.</span> <span class="toc-text">批量导入数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE"><span class="toc-number">1.4.12.</span> <span class="toc-text">查询数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81"><span class="toc-number">1.4.13.</span> <span class="toc-text">完整代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IK-%E5%88%86%E8%AF%8D%E5%99%A8-1"><span class="toc-number">1.5.</span> <span class="toc-text">IK 分词器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">1.6.</span> <span class="toc-text">参考</span></a></li></ol></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/01/18/idea-Tomcat%E5%90%AF%E5%8A%A8%E6%97%A5%E5%BF%97%E4%B9%B1%E7%A0%81%E8%A7%A3%E5%86%B3/" title="idea Tomcat启动日志乱码解决"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="idea Tomcat启动日志乱码解决"/></a><div class="content"><a class="title" href="/2021/01/18/idea-Tomcat%E5%90%AF%E5%8A%A8%E6%97%A5%E5%BF%97%E4%B9%B1%E7%A0%81%E8%A7%A3%E5%86%B3/" title="idea Tomcat启动日志乱码解决">idea Tomcat启动日志乱码解决</a><time datetime="2021-01-18T06:56:28.000Z" title="发表于 2021-01-18 14:56:28">2021-01-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/01/18/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" title="hexo博客搭建"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="hexo博客搭建"/></a><div class="content"><a class="title" href="/2021/01/18/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" title="hexo博客搭建">hexo博客搭建</a><time datetime="2021-01-18T06:49:15.000Z" title="发表于 2021-01-18 14:49:15">2021-01-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/01/18/ElasticSearch-%E5%AD%A6%E4%B9%A0/" title="ElasticSearch 学习"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ElasticSearch 学习"/></a><div class="content"><a class="title" href="/2021/01/18/ElasticSearch-%E5%AD%A6%E4%B9%A0/" title="ElasticSearch 学习">ElasticSearch 学习</a><time datetime="2021-01-18T06:47:46.000Z" title="发表于 2021-01-18 14:47:46">2021-01-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/01/18/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%B9%B3%E5%8F%B0%E5%92%8C%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0%E7%9A%84%E5%8C%BA%E5%88%AB/" title="微信公众平台和开放平台的区别"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="微信公众平台和开放平台的区别"/></a><div class="content"><a class="title" href="/2021/01/18/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%B9%B3%E5%8F%B0%E5%92%8C%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0%E7%9A%84%E5%8C%BA%E5%88%AB/" title="微信公众平台和开放平台的区别">微信公众平台和开放平台的区别</a><time datetime="2021-01-18T06:39:54.000Z" title="发表于 2021-01-18 14:39:54">2021-01-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/01/18/%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%88%E6%8E%92%E7%89%88%E6%8C%87%E5%8C%97/" title="中文文案排版指北"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="中文文案排版指北"/></a><div class="content"><a class="title" href="/2021/01/18/%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%88%E6%8E%92%E7%89%88%E6%8C%87%E5%8C%97/" title="中文文案排版指北">中文文案排版指北</a><time datetime="2021-01-18T06:27:13.000Z" title="发表于 2021-01-18 14:27:13">2021-01-18</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 涂祎豪</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">簡</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: '',
+      appKey: '',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'en',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign({}, initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else $.getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.querySelector('#vcomment'),loadValine)
+  else setTimeout(() => loadValine(), 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>
