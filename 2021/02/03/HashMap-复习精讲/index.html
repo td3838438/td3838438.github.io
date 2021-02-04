@@ -1,0 +1,392 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HashMap 复习精讲 | 涂祎豪の博客</title><meta name="keywords" content="Java"><meta name="author" content="涂祎豪"><meta name="copyright" content="涂祎豪"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="HashMap 复习精讲 引用 孤独烟 大佬的博文 【原创】HashMap复习精讲，侵删。  索引[TOC] 引言对于 JAVA 求职者来说，HashMap 可谓是集合类的重中之重，甚至你在复习的时候，其他集合类都不用看，专攻 HashMap 即可。然而，鉴于网上大部分的关于 HashMap 的面试方向文章，博主看过后都不是太满意。因此，斗胆尝试也写一篇关于 HashMap 的面试专题文章! 正文">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HashMap 复习精讲">
+<meta property="og:url" content="http://example.com/2021/02/03/HashMap-%E5%A4%8D%E4%B9%A0%E7%B2%BE%E8%AE%B2/index.html">
+<meta property="og:site_name" content="涂祎豪の博客">
+<meta property="og:description" content="HashMap 复习精讲 引用 孤独烟 大佬的博文 【原创】HashMap复习精讲，侵删。  索引[TOC] 引言对于 JAVA 求职者来说，HashMap 可谓是集合类的重中之重，甚至你在复习的时候，其他集合类都不用看，专攻 HashMap 即可。然而，鉴于网上大部分的关于 HashMap 的面试方向文章，博主看过后都不是太满意。因此，斗胆尝试也写一篇关于 HashMap 的面试专题文章! 正文">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2021-02-03T02:09:50.000Z">
+<meta property="article:modified_time" content="2021-02-04T07:59:08.994Z">
+<meta property="article:author" content="涂祎豪">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/02/03/HashMap-%E5%A4%8D%E4%B9%A0%E7%B2%BE%E8%AE%B2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?bfc0a84a9f263f4ea22d102c28b67a28";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":1,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: true
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-02-04 15:59:08'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><meta name="generator" content="Hexo 5.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">36</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">18</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首頁</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 時間軸</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 標籤</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分類</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清單</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音樂</span></a></li><li><a class="site-page" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 電影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友鏈</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 關於</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">涂祎豪の博客</a></span><span id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首頁</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 時間軸</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 標籤</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分類</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清單</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音樂</span></a></li><li><a class="site-page" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 電影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友鏈</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 關於</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><h1 class="post-title">HashMap 复习精讲</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-02-03T02:09:50.000Z" title="发表于 2021-02-03 10:09:50">2021-02-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-04T07:59:08.994Z" title="更新于 2021-02-04 15:59:08">2021-02-04</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/Java/">Java</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="HashMap-复习精讲"><a href="#HashMap-复习精讲" class="headerlink" title="HashMap 复习精讲"></a>HashMap 复习精讲</h1><blockquote>
+<p>引用 <a target="_blank" rel="noopener" href="https://home.cnblogs.com/u/rjzheng/">孤独烟</a> 大佬的博文 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/rjzheng/p/11302835.html">【原创】HashMap复习精讲</a>，侵删。</p>
+</blockquote>
+<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><p>[TOC]</p>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>对于 JAVA 求职者来说，HashMap 可谓是集合类的重中之重，甚至你在复习的时候，其他集合类都不用看，专攻 HashMap 即可。<br>然而，鉴于网上大部分的关于 HashMap 的面试方向文章，博主看过后都不是太满意。因此，斗胆尝试也写一篇关于 HashMap 的面试专题文章!</p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="（1）HashMap-的实现原理？"><a href="#（1）HashMap-的实现原理？" class="headerlink" title="（1）HashMap 的实现原理？"></a>（1）HashMap 的实现原理？</h3><p>此题可以组成如下连环炮来问</p>
+<ul>
+<li>你看过 HashMap 源码嘛，知道原理嘛?</li>
+<li>为什么用数组 + 链表？</li>
+<li>hash 冲突你还知道哪些解决办法？</li>
+<li>我用 LinkedList 代替数组结构可以么?</li>
+<li>既然是可以的，为什么 HashMap 不用 LinkedList，而选用数组?</li>
+</ul>
+<p><strong><em>你看过 HashMap 源码嘛，知道原理嘛？</em></strong></p>
+<p>针对这个问题，嗯，当然是必须看过HashMap源码。至于原理，下面那张图很清楚了:</p>
+<p><img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/725429.png" alt="725429"></p>
+<p>HashMap 采用 Entry 数组来存储 key-value 对，每一个键值对组成了一个 Entry 实体，Entry 类实际上是一个单向的链表结构，它具有 Next 指针，可以连接下一个 Entry 实体。</p>
+<p>只是在 JDK1.8 中，链表长度大于 8 的时候，链表会转成红黑树！</p>
+<p><strong><em>为什么用数组 + 链表？</em></strong></p>
+<p>数组是用来确定桶的位置，利用元素的 key 的 hash 值对数组长度取模得到.</p>
+<p>链表是用来解决 hash 冲突问题，当出现 hash 值一样的情形，就在数组上的对应位置形成一条链表。</p>
+<p><strong>PS：</strong>这里的 hash 值并不是指 hashcode，而是将 hashcode 高低十六位异或过的。至于为什么要这么做，继续往下看。</p>
+<p><strong><em>hash 冲突你还知道哪些解决办法？</em></strong></p>
+<p>比较出名的有四种：（1）开放地址法（2）链地址法（3）再哈希法（4）公共溢出区法</p>
+<p><strong>PS：</strong>大家有兴趣拓展的，自己去搜一下就懂了，这个就不拓展了！</p>
+<p><strong><em>我用 LinkedList 代替数组结构可以么?</em></strong></p>
+<p>这里我稍微说明一下，此题的意思是，源码中是这样的</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Entry[] table = <span class="keyword">new</span> Entry[capacity]</span><br></pre></td></tr></table></figure>
+
+<p><strong>PS：</strong>Entry 就是一个链表节点。</p>
+<p>那我用下面这样表示</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;Entry&gt; table = <span class="keyword">new</span> LinList&lt;Entry&gt; table = <span class="keyword">new</span> LinkedList&lt;Entry&gt;();  </span><br></pre></td></tr></table></figure>
+
+<p>是否可行?</p>
+<p>答案很明显，必须是可以的。</p>
+<p><strong><em>既然是可以的，为什么 HashMap 不用 LinkedList，而选用数组?</em></strong></p>
+<p>因为用数组效率最高！</p>
+<p>在 HashMap 中，定位桶的位置是利用元素的 key 的哈希值对数组长度取模得到。此时，我们已得到桶的位置。显然数组的查找效率比 LinkedList 大。</p>
+<p><strong><em>那ArrayList，底层也是数组，查找也快啊，为啥不用ArrayList?</em></strong></p>
+<p>因为采用基本数组结构，扩容机制可以自己定义，HashMap 中数组扩容刚好是 2 的次幂，在做取模运算的效率高。</p>
+<p>而 ArrayList 的扩容机制是 1.5 倍扩容，那 ArrayList 为什么是 1.5 倍扩容这就不在本文说明了。</p>
+<h3 id="（2）HashMap-在什么条件下扩容"><a href="#（2）HashMap-在什么条件下扩容" class="headerlink" title="（2）HashMap 在什么条件下扩容"></a>（2）HashMap 在什么条件下扩容</h3><p>此题可以组成如下连环炮来问</p>
+<ul>
+<li>HashMap 在什么条件下扩容?</li>
+<li>为什么扩容是 2 的 n 次幂?</li>
+<li>为什么为什么要先高 16 位异或低 16 位再取模运算?</li>
+</ul>
+<p><strong><em>HashMap在什么条件下扩容?</em></strong></p>
+<p>如果 bucket 满了(超过 load factor*current capacity)，就要 resize。</p>
+<p>load factor为0.75，为了最大程度避免哈希冲突</p>
+<p>current capacity 为当前数组大小。</p>
+<p><strong><em>为什么扩容是2的次幂?</em></strong></p>
+<p>HashMap 为了存取高效，要尽量减少碰撞，就是要尽量把数据分配均匀，每个链表长度大致相同，这个实现就在吧数据存到那个链表中的算法；这个算法实际就是取模，<code>hash % length</code>。</p>
+<p>但是，大家都知道这种运算不如唯一运算快。</p>
+<p>因此，源码中做了优化 hash &amp; (length - 1)。</p>
+<p>也就是说 hash % length == hash &amp; (length - 1)</p>
+<p>那为什么是 2 的 n 次方呢？</p>
+<p>因为 2 的 n 次方实际就是 1 后面 n 个 0，2 的 n 次方 -1，实际就是 n 个 1。</p>
+<p>例如长度为 8 时候，3 &amp; (8-1) = 3 2 &amp; (8-1) = 2 ，不同位置上，不碰撞。</p>
+<p>而长度为 5 的时候，3 &amp; (5 - 1) = 0 2 &amp; (5 - 1) = 0，都在 0 上，出现碰撞了。</p>
+<p>所以，保证容积是 2 的 n 次方，是为了保证在做 (length - 1) 的时候，每一位都能 &amp;1 ，也就是和 1111……1111111 进行与运算。 </p>
+<p><strong><em>为什么为什么要先高16位异或低16位再取模运算?</em></strong></p>
+<p>我先晒一下，jdk1.8 里的hash方法。1.7 的比较复杂，咱就不看了。</p>
+<p><img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/image-20210203161146884.png" alt="image-20210203161146884"></p>
+<p>hashmap 这么做，只是为了降低 hash 冲突的几率。打个比方，当我们的 length 为 16 的时候，哈希码（字符串 “abcabcabcabcabc” 的 key 对应的哈希码）对（16 - 1）与操作，对于多个 key 生成的 hashCode，只要哈希码的后 4 为为 0，不论高位这么变化，最终的结果均为 0。</p>
+<p>如下图所示</p>
+<p><img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/725429-20190805142959396-1219872938.jpg" alt="img"></p>
+<p>而加上高 16 位异或低 16 位的 ”扰动函数“ 后，结果如下</p>
+<p><img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/725429-20190805143026339-1559124442.jpg" alt="img"></p>
+<p>可以看到: 扰动函数优化前：1954974080 % 16 = 1954974080 &amp; (16 - 1) = 0 扰动函数优化后：1955003654 % 16 = 1955003654 &amp; (16 - 1) = 6 很显然，减少了碰撞的几率。</p>
+<h3 id="（3）讲讲-hashmap-的-get-put-的过程？"><a href="#（3）讲讲-hashmap-的-get-put-的过程？" class="headerlink" title="（3）讲讲 hashmap 的 get / put 的过程？"></a>（3）讲讲 hashmap 的 get / put 的过程？</h3><p>此题可以组成如下连环炮来问</p>
+<ul>
+<li>知道hashmap中put元素的过程是什么样么?</li>
+<li>知道hashmap中get元素的过程是什么样么？</li>
+<li>你还知道哪些hash算法？</li>
+<li>说说String中hashcode的实现?(此题很多大厂问过)</li>
+</ul>
+<p><strong><em>知道hashmap中put元素的过程是什么样么?</em></strong></p>
+<p>对 key 的 hashCode()做 hash 运算，计算 index；</p>
+<p>如果没碰撞直接放到 bucket 里；</p>
+<p>如果碰撞了，以链表的形式存在 buckets 后；</p>
+<p>如果碰撞导致链表过长 (大于等于TREEIFY_THRESHOLD)，就把链表转换成红黑树 (JDK1.8中的改动)；</p>
+<p>如果节点已经存在就替换 old value（保证 key 的唯一性）</p>
+<p>如果 bucket 满了（超过 load factor*current capacity），就要 resize。</p>
+<p><strong><em>知道 hashmap 中 get 元素的过程是什么样么?</em></strong></p>
+<p>对 key 的 hashCode() 做 hash 运算，计算 index;</p>
+<p>如果在 bucket 里的第一个节点里直接命中，则直接返回；</p>
+<p>如果有冲突，则通过 key.equals(k) 去查找对应的 Entry;</p>
+<ul>
+<li>若为树，则在树种通过 key.equals(k) 查找，O(logn)；</li>
+<li>若为链表，则在链表中通过 key.equals(k) 查找，O(n)。</li>
+</ul>
+<p><strong><em>你还知道哪些 hash 算法？</em></strong></p>
+<p>先说一下 hash 算法是干嘛的，Hash 函数是指把一个大范围映射到一个小范围。把大范围映射到一个小范围的目的往往是为了节省空间，是的数据容易保存。</p>
+<p>比较出名的有 MurmurHash、MD4、MD5 等等</p>
+<p><strong><em>说说 String 中 hashcode 的实现？（此题频率很高）</em></strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> h = hash;</span><br><span class="line">    <span class="keyword">if</span> (h == <span class="number">0</span> &amp;&amp; value.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">char</span> val[] = value;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; value.length; i++) &#123;</span><br><span class="line">            h = <span class="number">31</span> * h + val[i];</span><br><span class="line">        &#125;</span><br><span class="line">        hash = h;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> h;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>String 类中的 hashCode 计算方法还是比较简单的，就是以 31 为权，每一位为字符的 ASCII 值进行运算，用自然移除来等效取模。</p>
+<p>哈希计算公式可以计为 <code>s[0]*31^(n-1) + s[1]*31^(n-2) + ... + s[n-1]</code></p>
+<p>那么为什么以 31 为质数呢？</p>
+<p>主要是因为 31 是一个奇质数，所以 <code>31*i=32*i-i=(i&lt;&lt;5)-i</code> ，这种位移与减法结合的计算相比一般的运算快很多。</p>
+<h3 id="（4）为什么-hashmap-的在链表元素量超过-8-时改为红黑树？"><a href="#（4）为什么-hashmap-的在链表元素量超过-8-时改为红黑树？" class="headerlink" title="（4）为什么 hashmap 的在链表元素量超过 8 时改为红黑树？"></a>（4）为什么 hashmap 的在链表元素量超过 8 时改为红黑树？</h3><p>此题可以组成如下连环炮来问</p>
+<ul>
+<li>知道jdk1.8中hashmap改了啥么?</li>
+<li>为什么在解决hash冲突的时候，不直接用红黑树?而选择先用链表，再转红黑树?</li>
+<li>我不用红黑树，用二叉查找树可以么?</li>
+<li>那为什么阀值是8呢?</li>
+<li>当链表转为红黑树后，什么时候退化为链表?</li>
+</ul>
+<p><strong><em>知道jdk1.8中hashmap改了啥么?</em></strong></p>
+<ul>
+<li>由<strong>数组+链表</strong>的结构改为<strong>数组+链表+红黑树</strong>。</li>
+<li>优化了高位运算的 hash 算法：h^(h&gt;&gt;&gt;16)</li>
+<li>扩容后，元素要么是在原位置，要么是在原位置再移动 2 次幂的位置，且链表顺序不变。</li>
+</ul>
+<p>最后一条是重点，因为最后一条的变动，hashmap 在1.8 中，不会在出现死循环问题。</p>
+<p><strong><em>为什么在解决hash冲突的时候，不直接用红黑树?而选择先用链表，再转红黑树?</em></strong></p>
+<p>因为红黑树需要进行左旋，右旋，变色这些操作来保持平衡，而单链表不需要。</p>
+<p>当元素小于 8 哥的时候，此时做查询操作，链表结构已经能保证查询性能。当元素大于 8 个的时候，此时需要红黑树类加快查询速度，但是新增效率又比较慢，五一这是浪费性能的。</p>
+<p><strong><em>我不用红黑树，用二叉查找树可以么?</em></strong></p>
+<p>可以。但是二叉查找树在特殊情况下会变成一条线性结构（这就跟原来使用链表结构一样了，造成很深的问题），遍历查找会非常慢。</p>
+<p><strong><em>那为什么阀值是8呢?</em></strong></p>
+<p>不知道，等 jdk 作者来回答。</p>
+<p>这道题，网上能找到的答案都是扯淡。</p>
+<p>我随便贴一个牛客网的答案，如下图所示</p>
+<p><img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/725429-20190805143056573-1768742707.jpg" alt="img"></p>
+<p>看出 bug 没？交点是 6.64？交点分明是 4，好么。<br>log4=2，4/2=2。<br>jdk 作者选择 8，一定经过了严格的运算，觉得在长度为 8 的时候，与其保证链表结构的查找开销，不如转换为红黑树，改为维持其平衡开销。</p>
+<p><strong><em>当链表转为红黑树后，什么时候退化为链表?</em></strong></p>
+<p>为 6 的时候退转为链表。中间有个差值 7 可以防止链表和树之间频繁的转换。假设一下，如果设计成链表个数超过 8 则量表转换成熟结构，链表个数小于 8 则树结构转换成链表，如果一个 HashMap 不停的插入、删除元素，链表个数在 8 左右徘徊，就会频繁的发生树转链表、链表转树，效率会很低。</p>
+<h3 id="（5）HashMap-的并发问题？"><a href="#（5）HashMap-的并发问题？" class="headerlink" title="（5）HashMap 的并发问题？"></a>（5）HashMap 的并发问题？</h3><p>此题可以组成如下连环炮来问</p>
+<ul>
+<li>HashMap 在并发编程环境下有什么问题啊?</li>
+<li>在 jdk1.8 中还有这些问题么?</li>
+<li>你一般怎么解决这些问题的？</li>
+</ul>
+<p><strong><em>HashMap在并发编程环境下有什么问题啊?</em></strong></p>
+<ul>
+<li>（1）多线程扩容，引起的死循环问题</li>
+<li>（2）多线程 put 的时候可能导致元素丢失</li>
+<li>（3）put 非 null 元素后 get 出来的却是 null</li>
+</ul>
+<p><strong><em>在jdk1.8中还有这些问题么?</em></strong></p>
+<p>在 jdk1.8 中，死循环问题已经解决。其他两个问题还是存在。</p>
+<p><strong><em>你一般怎么解决这些问题的？</em></strong></p>
+<p>比如 ConcurrentHashmap，Hashtable 等线程安全等集合类。</p>
+<h3 id="（6）你一般用什么作为-HashMap-的-key？"><a href="#（6）你一般用什么作为-HashMap-的-key？" class="headerlink" title="（6）你一般用什么作为 HashMap 的 key？"></a>（6）你一般用什么作为 HashMap 的 key？</h3><p>此题可以组成如下连环炮来问</p>
+<ul>
+<li>键可以为 null 值么？</li>
+<li>你一般用什么作为 HashMap 的 key?</li>
+<li>我用可变类当 HashMap 的 key 有什么问题?</li>
+<li>如果让你实现一个自定义的 class 作为 HashMap 的 key 该如何实现？</li>
+</ul>
+<p><strong><em>健可以为 Null 值么?</em></strong></p>
+<p>必须可以，key 为 null 的时候，hash 算法最后的值以 0 来计算，也就是放在数组的第一个位置。</p>
+<p><img src="https://malloc-img.oss-cn-hangzhou.aliyuncs.com/img/725429-20190805143145596-951949614.png" alt="img"></p>
+<p><strong><em>你一般用什么作为 HashMap 的 key?</em></strong></p>
+<p>一般用 Integer、String 这种不可变类当 HashMap 的 key，而且 String 最为常用。</p>
+<ul>
+<li>（1）因为字符串是不可变的，所以在它创建的时候 hashCode 就被缓存了，不需要重新计算。这就使得字符串很适合做 Map 中的键，字符串的处理速度要快过其他的键对象。这就是 HashMap 中的键往往都使用字符串。</li>
+<li>（2）因为获取对象的时候要用到 equals() 和 hashCode() 方法，那么键对象正确的重写这两个方法是非常重要的，这些类已经很规范的覆写了 hashCode() 以及 equals() 方法。</li>
+</ul>
+<p><strong><em>我用可变类当 HashMap 的 key 有什么问题？</em></strong></p>
+<p>hashcode 可能发生改变，导致 put 进去的值，无法 get 出，如下所示</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">HashMap&lt;List&lt;String&gt;, Object&gt; changeMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">list.add(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">Object objectValue = <span class="keyword">new</span> Object();</span><br><span class="line">changeMap.put(list, objectValue);</span><br><span class="line">System.out.println(changeMap.get(list));</span><br><span class="line">list.add(<span class="string">&quot;hello world&quot;</span>);	<span class="comment">//hashcode发生了改变</span></span><br><span class="line">System.out.println(changeMap.get(list));</span><br></pre></td></tr></table></figure>
+
+<p>输出值如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">java.lang.Object@<span class="number">74</span>a14482</span><br><span class="line"><span class="keyword">null</span></span><br></pre></td></tr></table></figure>
+
+<p><strong><em>如果让你实现一个自定义的 class 作为 HashMap 的 key 该如何实现？</em></strong></p>
+<p>此题考察两个知识点</p>
+<ul>
+<li>重写 hashcode 和 equals 方法注意什么?</li>
+<li>如何设计一个不变类</li>
+</ul>
+<p><strong>针对问题一，记住下面四个原则即可</strong></p>
+<p>（1）两个对象相等，hashCode 一定相等</p>
+<p>（2）两个对象不等，hashCode 不一定不等</p>
+<p>（3）hashCode 相等，两个对象不一定相等</p>
+<p>（4）hashCode 不等，两个对象一定不等</p>
+<p><strong>针对问题二，记住如何写一个不可变类</strong></p>
+<p>（1）类添加 final 修饰符，保证类不被继承。</p>
+<p>如果类可以被继承会破坏类的不可变性机制，只要继承覆盖父类的方法并且继承类可以改变成员变量值，那么一旦子类以父类的形式出现时，不能保证当前类是否可以变。</p>
+<p>（2）保证所有成员变量必须私有，并且加上 final 修饰。</p>
+<p>通过这种方式保证成员变量不可改变。但只做到这一步还不够，因为如果是对象成员变量有可能在外部改变其值。所以第四点弥补这个不足。</p>
+<p>（3）不提供改变成员变量的方法，包括 setter</p>
+<p>避免通过其他接口改变成员变量的值，破坏不可变特性。</p>
+<p>（4）通过构造器初始化所有成员，进行深度拷贝（deep copy）</p>
+<p>如果构造器传入的对象直接赋值给成员变量，还是可以通过对传入对象的修改进而导致内部变量的值。如果：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">ImmutableDemo</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span>[] myArray;  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ImmutableDemo</span><span class="params">(<span class="keyword">int</span>[] array)</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">this</span>.myArray = array; <span class="comment">// wrong  </span></span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这种方式不能保证不可变性，myArray 和 array 指向同一块内存地址，用户可以在 ImmutableDemo 之外通过修改 array 对象的值来改变 myArray 内部的值。</p>
+<p>为了保证内部的值不被修改，可以采用深度 copy 来创建一个新内存保存传入的值。真确的做法：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">MyImmutableDemo</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span>[] myArray;  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyImmutableDemo</span><span class="params">(<span class="keyword">int</span>[] array)</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">this</span>.myArray = array.clone();   </span><br><span class="line">    &#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（5）在getter方法中，不要直接返回对象本身，而是克隆对象，并返回对象的拷贝<br>这种做法也是防止对象外泄，防止通过getter获得内部可变成员对象后对成员变量直接操作，导致成员变量发生改变。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">涂祎豪</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/02/03/HashMap-%E5%A4%8D%E4%B9%A0%E7%B2%BE%E8%AE%B2/">http://example.com/2021/02/03/HashMap-%E5%A4%8D%E4%B9%A0%E7%B2%BE%E8%AE%B2/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">涂祎豪の博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Java/">Java</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/02/03/Linux-crontab-%E5%91%BD%E4%BB%A4/"><img class="prev-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Linux crontab 命令</div></div></a></div><div class="next-post pull-right"><a href="/2021/02/03/Linux-%E6%97%B6%E9%97%B4%E6%A0%BC%E5%BC%8F/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Linux 时间格式</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/01/21/HashMap-实现原理/" title="HashMap 实现原理"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-21</div><div class="title">HashMap 实现原理</div></div></a></div><div><a href="/2021/02/01/JSON-对象与字符串的相互转化/" title="JSON 对象与字符串的相互转化"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-01</div><div class="title">JSON 对象与字符串的相互转化</div></div></a></div><div><a href="/2021/02/01/JSON-的编码与解码/" title="JSON 的编码与解码"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-01</div><div class="title">JSON 的编码与解码</div></div></a></div><div><a href="/2021/01/22/Java-中的线程安全与非线程安全/" title="Java 中的线程安全与非线程安全"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-22</div><div class="title">Java 中的线程安全与非线程安全</div></div></a></div><div><a href="/2021/02/01/Java-快速打印数组和-List-集合中所有的元素的方法/" title="Java 快速打印数组和 List 集合中所有的元素的方法"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-01</div><div class="title">Java 快速打印数组和 List 集合中所有的元素的方法</div></div></a></div><div><a href="/2021/01/20/Spring-Bean-是什么/" title="Spring Bean 是什么"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-20</div><div class="title">Spring Bean 是什么</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">涂祎豪</div><div class="author-info__description">那一夜，我也曾梦见百万雄兵。</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">36</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">18</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/td3838438" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:tuyihao_java@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://www.zhihu.com/people/tu-yi-hao-3" target="_blank" title="Zhihu"><i class="fab fa-zhihu"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#HashMap-%E5%A4%8D%E4%B9%A0%E7%B2%BE%E8%AE%B2"><span class="toc-number">1.</span> <span class="toc-text">HashMap 复习精讲</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95"><span class="toc-number">1.1.</span> <span class="toc-text">索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-number">1.2.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-number">1.3.</span> <span class="toc-text">正文</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89HashMap-%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%EF%BC%9F"><span class="toc-number">1.3.1.</span> <span class="toc-text">（1）HashMap 的实现原理？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89HashMap-%E5%9C%A8%E4%BB%80%E4%B9%88%E6%9D%A1%E4%BB%B6%E4%B8%8B%E6%89%A9%E5%AE%B9"><span class="toc-number">1.3.2.</span> <span class="toc-text">（2）HashMap 在什么条件下扩容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E8%AE%B2%E8%AE%B2-hashmap-%E7%9A%84-get-put-%E7%9A%84%E8%BF%87%E7%A8%8B%EF%BC%9F"><span class="toc-number">1.3.3.</span> <span class="toc-text">（3）讲讲 hashmap 的 get &#x2F; put 的过程？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%884%EF%BC%89%E4%B8%BA%E4%BB%80%E4%B9%88-hashmap-%E7%9A%84%E5%9C%A8%E9%93%BE%E8%A1%A8%E5%85%83%E7%B4%A0%E9%87%8F%E8%B6%85%E8%BF%87-8-%E6%97%B6%E6%94%B9%E4%B8%BA%E7%BA%A2%E9%BB%91%E6%A0%91%EF%BC%9F"><span class="toc-number">1.3.4.</span> <span class="toc-text">（4）为什么 hashmap 的在链表元素量超过 8 时改为红黑树？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%885%EF%BC%89HashMap-%E7%9A%84%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98%EF%BC%9F"><span class="toc-number">1.3.5.</span> <span class="toc-text">（5）HashMap 的并发问题？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%886%EF%BC%89%E4%BD%A0%E4%B8%80%E8%88%AC%E7%94%A8%E4%BB%80%E4%B9%88%E4%BD%9C%E4%B8%BA-HashMap-%E7%9A%84-key%EF%BC%9F"><span class="toc-number">1.3.6.</span> <span class="toc-text">（6）你一般用什么作为 HashMap 的 key？</span></a></li></ol></li></ol></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/02/03/Linux-crontab-%E5%91%BD%E4%BB%A4/" title="Linux crontab 命令"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux crontab 命令"/></a><div class="content"><a class="title" href="/2021/02/03/Linux-crontab-%E5%91%BD%E4%BB%A4/" title="Linux crontab 命令">Linux crontab 命令</a><time datetime="2021-02-03T09:51:41.000Z" title="发表于 2021-02-03 17:51:41">2021-02-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/03/HashMap-%E5%A4%8D%E4%B9%A0%E7%B2%BE%E8%AE%B2/" title="HashMap 复习精讲"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="HashMap 复习精讲"/></a><div class="content"><a class="title" href="/2021/02/03/HashMap-%E5%A4%8D%E4%B9%A0%E7%B2%BE%E8%AE%B2/" title="HashMap 复习精讲">HashMap 复习精讲</a><time datetime="2021-02-03T02:09:50.000Z" title="发表于 2021-02-03 10:09:50">2021-02-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/03/Linux-%E6%97%B6%E9%97%B4%E6%A0%BC%E5%BC%8F/" title="Linux 时间格式"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux 时间格式"/></a><div class="content"><a class="title" href="/2021/02/03/Linux-%E6%97%B6%E9%97%B4%E6%A0%BC%E5%BC%8F/" title="Linux 时间格式">Linux 时间格式</a><time datetime="2021-02-03T02:05:15.000Z" title="发表于 2021-02-03 10:05:15">2021-02-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/02/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%88%86%E5%B8%83%E5%BC%8F%E4%B8%80%E5%AE%9A%E8%A6%81%E6%9C%89-redis%EF%BC%88redis-%E5%A4%8D%E4%B9%A0%E7%B2%BE%E8%AE%B2%EF%BC%89/" title="为什么分布式一定要有 redis（redis 复习精讲）"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="为什么分布式一定要有 redis（redis 复习精讲）"/></a><div class="content"><a class="title" href="/2021/02/02/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%88%86%E5%B8%83%E5%BC%8F%E4%B8%80%E5%AE%9A%E8%A6%81%E6%9C%89-redis%EF%BC%88redis-%E5%A4%8D%E4%B9%A0%E7%B2%BE%E8%AE%B2%EF%BC%89/" title="为什么分布式一定要有 redis（redis 复习精讲）">为什么分布式一定要有 redis（redis 复习精讲）</a><time datetime="2021-02-02T03:16:51.000Z" title="发表于 2021-02-02 11:16:51">2021-02-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/01/%E5%93%88%E5%B8%8C%E8%A1%A8%E8%AF%A6%E8%A7%A3/" title="哈希表详解"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="哈希表详解"/></a><div class="content"><a class="title" href="/2021/02/01/%E5%93%88%E5%B8%8C%E8%A1%A8%E8%AF%A6%E8%A7%A3/" title="哈希表详解">哈希表详解</a><time datetime="2021-02-01T11:36:55.000Z" title="发表于 2021-02-01 19:36:55">2021-02-01</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 涂祎豪</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">簡</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: '',
+      appKey: '',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'en',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign({}, initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else $.getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.querySelector('#vcomment'),loadValine)
+  else setTimeout(() => loadValine(), 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>
